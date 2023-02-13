@@ -1,0 +1,17 @@
+#!/bin/bash
+
+PACKAGES="gulp-cli"
+
+if [[ $APP_DEBUG == 'true' ]]; then
+    npm i
+else
+    npm i --prod
+fi
+
+echo -e "Installing \033[32m$PACKAGES\033[0m"
+if [[ APP_DEBUG == 'true' ]]; then
+    npm i -g $PACKAGES
+else
+    npm i -g --prod $PACKAGES
+fi
+echo "All done."

@@ -1,0 +1,23 @@
+{
+  "name": "homepage.js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "gulp serve_dev",
+    "prod": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "eta": "^2.0.0",
+    "express": "^4.18.2",
+    "glob": "^8.1.0"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}

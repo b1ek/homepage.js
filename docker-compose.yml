@@ -1,0 +1,14 @@
+version: '3'
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - './:/opt/code'
+    ports:
+      - '${APP_PORT}:${APP_PORT}'
+      - '9229:9229'
+    env_file: ./.env
+    environment:
+      APP_PORT: '${APP_PORT}'
