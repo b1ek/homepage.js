@@ -1,7 +1,7 @@
 const Helpers = require('../helpers');
 
 async function handler(req, res) {
-    res.send(await Helpers.ViewLoader.load('welcome.eta'));
+    res.send(await Helpers.ViewLoader.load('hi.pug'));
 }
 
 module.exports = (router) => {
