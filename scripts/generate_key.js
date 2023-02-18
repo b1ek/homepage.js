@@ -2,18 +2,20 @@ const crypto = require('crypto');
 const path = require('path');
 const args = require('args-parser')(process.argv);
 const fs = require('fs');
+const base64 = require('js-base64');
 
 let key = crypto.randomBytes(256).toString('base64');
 let dotenv = path.resolve('.env');
 
 if (args['help']) {
-    console.log(path.basename(__filename) + ' [--key-only] [--env|-e] [--set-key] [--dry-run]');
+    console.log(path.basename(__filename) + ' [--key-only] [--env|-e] [--set-key] [--dry-run] [--stdout|-s]');
     console.log('\n' + 
         '  --help: Display this help\n' +
         '  --key-only: Generate key only and put it in stdout\n' + 
         '  --env -e: Specify an env file\n' +
         '  --set-key: Specify your key\n' +
-        '  --dry-run: Don\'t write anything, just do the thing'
+        '  --dry-run: Don\'t write anything, just do the thing\n' + 
+        '  --stdout -s: Don\'t write to file, write to stdout instead'
     )
 }
 
@@ -41,6 +43,10 @@ for (let i = 0; i != lines.length; i++) {
 
 const newfile = lines.join('\n');
 
+const w_stdout = args['stdout'] || args['s'];
+
 if (!args['dry-run']) {
-    fs.writeFileSync(dotenv, newfile);
+    if (w_stdout) console.log(newfile);
+    else
+        fs.writeFileSync(dotenv, newfile);
 }
