@@ -4,7 +4,7 @@ const args = require('args-parser')(process.argv);
 const fs = require('fs');
 const base64 = require('js-base64');
 
-let key = crypto.randomBytes(256).toString('base64');
+let key = crypto.randomFillSync(Buffer.alloc(32)).toString('base64');
 let dotenv = path.resolve('.env');
 
 if (args['help']) {
