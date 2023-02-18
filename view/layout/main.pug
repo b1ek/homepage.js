@@ -1,0 +1,36 @@
+block root
+
+-
+    let routes = {
+        "Main page": '/',
+        "Projects": "/project",
+        "About me": "/about"
+    }
+
+doctype html
+html
+    head
+        title blek! Site #{title ? "- " + title : ""}
+
+        link(rel='stylesheet' href='/static/main.css')
+
+        block head 
+    body
+        table(width='100%' height='100%' class='body_table')
+            tr
+                td(class='side_menu')
+                    h1
+                        a(href='/') blek! Site
+                    hr(class='flag_hr')
+                    ul 
+                        each route, name in routes
+                            li
+                                if current_route == route
+                                    | > #{name}
+                                else
+                                    a(href=route) #{name}
+                td(class='main_contents')
+                    block content
+        block foot
+        block scripts
+        

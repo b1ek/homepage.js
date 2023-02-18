@@ -1,5 +1,9 @@
 console.log('Executing startup jobs...');
 
+if (process.env.APP_DEBUG) {
+    process.env.DEBUG = '*/*';
+}
+
 const fs = require('fs');
 
 const hrt = () => {

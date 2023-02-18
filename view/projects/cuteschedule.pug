@@ -1,0 +1,23 @@
+extends ../layout/project.pug
+block root
+    - var title = 'CuteSchedule'
+
+block append content
+    p(align='center')
+        img(src='/content/cuteschedule.png' height=128)
+        <br/>
+        | CuteSchedule is an interactive menu with a school schedule.
+        br
+    hr
+    p.
+        The idea is that the user comes to a big touchscreen TV, selects their class and sees the schedule for the week.
+    p.
+        The whole thing was made for a school project and the code is not very good. 
+        I am planning to re write it to electron+vue sometime to have better UI/UX
+    p.
+        Also, the original task requested a feature to track a teacher by schedule (to see the cabinet the teacher is in), 
+        but i never got around to implementing it.
+    p.
+        It loads the config from a YAML file with 
+        <a href='https://github.com/jbeder/yaml-cpp'>yaml-cpp</a><br/>
+        <span style='font-size:80%'>Funny part: it is stored in git as precompiled binary.</span>

@@ -1,0 +1,45 @@
+extends layout/main.pug
+block root
+    - var title = 'Main page'
+block content
+    //
+        h1(align='center') Welcome on my website!
+        p
+            | Hi there! My name is Alice and I like to build software.
+        hr
+        p
+            | Currently I am working on a college project (which is going to air in june)
+            br
+            | This website was built using Express.js
+        p
+            | Check out my 
+            a(href='https://github.com/b1ek') GitHub page
+            |  and my 
+            a(href='/resume') resume
+    table(width='100%')
+        tr
+            td(width='20%')
+                h4 Guest book 
+                    | (
+                    a(href='/guestbook.rss') RSS
+                    | )             
+                ul
+                    li entry                
+                    li entry
+                    li entry
+                    li entry
+                    li entry
+                a(href='/guestbook') Write something in my guestbook!
+            td(width='60%' style='border-left:1px solid #c2c4c2;border-right:1px solid #c2c4c2;padding:0 1%')
+                h3 Blog
+                ul
+                    each i in [0,0,0,0,0]
+                        li(style='font-size:16pt')
+                            | entry
+                            ul
+                                li data
+            
+            td(width='20%')
+                h4 Links
+                a(href='https://cameronsworld.net') cameronsworld.net
+                a(href='https://')

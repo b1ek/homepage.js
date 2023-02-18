@@ -31,7 +31,7 @@ gulp.task("serve_dev", (cb) => {
 
 gulp.task("serve", (cb) => {
     console.log('Launching node...');
-    spawn('node', [, 'index.js'], {stdio: 'inherit'})
+    spawn('node', ['index.js'], {stdio: 'inherit'})
     cb();
 });
 

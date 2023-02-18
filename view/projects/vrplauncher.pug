@@ -1,0 +1,22 @@
+extends ../layout/project.pug
+block root
+    - var title = 'VRPLauncher'
+
+block append content
+    h2 VRPLauncher
+    p.
+        VRPLauncher is a custom minecraft launcher for another project (a minecraft server with mods).<br/>
+        It is written in C# with WinForms and is made to keep only specific mods in mods folder (it reports any modifications to the server).
+    p(align='center')
+        img(src='/content/vrplauncher.png' height=351)
+        <br/>
+        | I have bothered to download the archive with this<br/>
+        | and run it with Wine (unfourtunately, i dont run windows)
+    hr
+    p.
+        The interface is written and hardcoded in Russian because the server was made for russians. <br/>
+        It was, though planned to implement localization but the project was shut down before i ever got to this.
+    p.
+        The design is not very good, but its as good as it gets with WinForms (i guess?)<br/>
+        Perhaps it could be better, but that's the best i could do at the time.<br/>
+        <span style='font-size:80%'>Should've made the thing with WPF</span>
