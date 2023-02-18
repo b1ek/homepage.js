@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PACKAGES="gulp-cli gulper gulp"
+PACKAGES="gulp-cli gulper gulp mocha"
 
 if [[ $APP_DEBUG == 'true' ]]; then
     npm i
