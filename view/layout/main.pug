@@ -10,14 +10,14 @@ block root
     }
 
 doctype html
-html
+html(style='overflow-y:auto')
     head
         title blek! Site #{title ? "- " + title : ""}
 
         link(rel='stylesheet' href='/static/main.css')
 
         block head 
-    body
+    body(style='overflow-y:auto')
         table(width='100%' height='100%' class='body_table')
             tr
                 td(class='side_menu')

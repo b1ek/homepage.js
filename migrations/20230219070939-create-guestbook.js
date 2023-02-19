@@ -31,15 +31,8 @@ module.exports = {
         allowNull: false
       },
       time: {
-        type: DataTypes.BIGINT
-      },
-      createdAt: {
-        allowNull: false,
-        type: DataTypes.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: DataTypes.DATE
+        type: DataTypes.BIGINT,
+        allowNull: false
       }
     });
   },

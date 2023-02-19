@@ -20,8 +20,11 @@ config = {
   username: DB_USERNAME || config.username,
   password: DB_PASSWORD || config.password,
   database: DB_DATABASE || config.database,
-  host:     DB_HOSTNAME || config.host
-}
+  host:     DB_HOSTNAME || config.host,
+  define: {
+    timestamps: false
+  }
+};
 
 let sequelize;
 if (config.use_env_variable) {
