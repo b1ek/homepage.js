@@ -16,6 +16,7 @@ let RedisStore = require("connect-redis")(session)
 
 const { APP_PORT, APP_KEY } = process.env;
 
+
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(cookie_parse(APP_KEY))
@@ -35,6 +36,24 @@ app.use(express.static('public'));
 // 404
 app.use((req, res, next) => {
 
+})
+
+
+
+// error handler
+app.use(async (err, req, res, next) => {
+	console.log(err);
+    if (res.headersSent) {
+        return next(err);
+    }
+
+	const Helpers = require('./helpers');
+
+    res.status(500);
+	res.send(await Helpers.ViewLoader.load('error.pug', {
+        error: '500 Internal Server Error',
+        message: 'An unexpected error happened in the server'
+    }));
 })
 
 const server = app.listen(APP_PORT, () => {
