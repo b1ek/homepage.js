@@ -1,7 +1,12 @@
 
 // do startup jobs
 require('./startup');
-if (process.env.APP_DEBUG == 'true') process.env.DEBUG = '*/*';
+if (process.env.APP_DEBUG == 'true') {
+	process.env.DEBUG = '*/*';
+	process.env.NODE_ENV = 'development';
+} else {
+	process.env.NODE_ENV = 'production';
+}
 
 const express = require('express');
 const app = express();

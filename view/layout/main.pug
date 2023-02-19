@@ -4,7 +4,9 @@ block root
     let routes = {
         "Main page": '/',
         "Projects": "/project",
-        "About me": "/about"
+        "About me": "/about",
+        "hr": "hr",
+        "Guestbook": "/guestbook"
     }
 
 doctype html
@@ -24,11 +26,14 @@ html
                     hr(class='flag_hr')
                     ul 
                         each route, name in routes
-                            li
-                                if current_route == route
-                                    | > #{name}
-                                else
-                                    a(href=route) #{name}
+                            if (route == 'hr')
+                                li <hr/>
+                            else
+                                li(style='padding-left:4px')
+                                    if current_route == route
+                                        | > #{name}
+                                    else
+                                        a(href=route) #{name}
                 td(class='main_contents')
                     block content
         block foot

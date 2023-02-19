@@ -1,27 +1,45 @@
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up(queryInterface, DataTypes) {
     await queryInterface.createTable('Guestbooks', {
       id: {
-        allowNull: false,
-        autoIncrement: true,
+        type: DataTypes.BIGINT(11),
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      id: {
-        type: Sequelize.BIGINT
+        autoIncrement: true,
+        allowNull: false
       },
       name: {
-        type: Sequelize.TEXT
+        type: DataTypes.TEXT,
+        allowNull: false
+      },
+      email: DataTypes.TEXT,
+      text: {
+        type: DataTypes.TEXT,
+        allowNull: false
+      },
+      hidemail: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
+      },
+      ip: {
+        type: DataTypes.TEXT,
+        allowNull: false
+      },
+      hidden: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
+      },
+      time: {
+        type: DataTypes.BIGINT
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: DataTypes.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: DataTypes.DATE
       }
     });
   },

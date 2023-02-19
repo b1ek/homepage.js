@@ -1,4 +1,5 @@
 const Helpers = require('../helpers');
+const Sequelize = require('../models');
 
 async function handler(req, res, next) {
     try {
@@ -31,6 +32,8 @@ async function submit(req, res) {
     res.send({
         name, email, message, hidemail
     });
+
+    // console.log(Sequelize.Guestbook);
 
     return;
 }

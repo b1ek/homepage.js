@@ -43,7 +43,9 @@ a:visited {
     list-style: none;
     padding: 0;
     font-size: 11pt;
-    padding-top: 32px;
+    padding-top: 36px;
+    padding-left: 4px;
+    line-height: 125%;
 }
 .main_contents {
     padding: 16px 12px;
@@ -62,4 +64,12 @@ a:visited {
 hr {
     border: 0;
     border-bottom: 1px solid #C2C4C2;
+}
+
+a {
+    font-weight: bold;
+    font-size: 95%;
+    text-decoration: none;
+    color:#2353ad;
+    font-family: 'Open Sans' 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
