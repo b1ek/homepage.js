@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PACKAGES="gulp-cli gulper gulp mocha"
+PACKAGES="gulp-cli gulper gulp mocha sequelize-cli"
 
 if [[ $APP_DEBUG == 'true' ]]; then
     npm i
