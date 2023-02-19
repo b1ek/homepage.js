@@ -41,3 +41,22 @@ block content
                 span(style='font-size:10pt;color:darkred;font-weight:bold').
                     Warning: Your ip (#{ip}) will be logged and displayed for everyone.<br/>
                     You can delete your own message if it was sent from the same ip for 24 hours after it was sent.
+    hr
+
+    if (!data)
+        p No records available.
+    else
+        table
+            each entry, id in data
+                tr
+                    td(width='20%' class='gb_sender_data')
+                        p(style='font-size:9pt').
+                            ID: <a id='gb_entry_#{id}' href='#gb_entry_#{id}'>##{id}</a><br/>
+                            Sender: #{entry.name}<br/>
+                            Email: #{entry.email}<br/>
+                            IP: #{entry.ip}<br/>
+                            Date: #{new Date(entry.time).toISOString()}<br/>
+                    td(width='80%' style='padding:0 8px')
+                        p(style='font-size:9pt;font-weight:bold;margin:0;padding:0;padding-top:1em') Message:
+                        p(style='margin:0;padding:0;font-size:10pt').
+                            hiii
