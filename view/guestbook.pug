@@ -1,0 +1,40 @@
+extends layout/main.pug
+block root
+    - var title = 'Guestbook'
+block content
+    h1 Guestbook
+    p.
+        Leave a message if you want.
+    hr
+    table
+        tr
+            td
+                h4 Message form
+                form(method='post' action='/guestbook/submit')
+                    table
+                        tr
+                            td Your name:
+                            td
+                                input(type='text'  name='name'  value='John Doe')
+                        tr
+                            td Your email:
+                            td
+                                input(type='email' name='email' value='john.doe@example.com')
+                        tr
+                            td Hide your email?
+                            td
+                                input(type='checkbox' name='hidemail')
+                    p(style='margin:6px 0') Your message (512 chars max):
+                    textarea(name='message' style='width:100%;height:150px')
+                    
+            td(style='padding:0 16px;margin:0')
+                h5 Guidelines
+                ul
+                    li Follow the DBAA policy.
+                    li
+                        | Do not post spam ads, keep it for humans.
+                        ul
+                            li There is no captcha for a reason. I'd like it to stay like this for as long as possible, so I humbly ask not to ruin it.
+                span(style='font-size:10pt;color:darkred;font-weight:bold').
+                    Warning: Your ip (#{ip}) will be logged and displayed for everyone.<br/>
+                    You can delete your own message if it was sent from the same ip for 24 hours after it was sent.
