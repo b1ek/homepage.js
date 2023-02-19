@@ -1,6 +1,8 @@
 extends layout/main.pug
 block root
     - var title = 'Guestbook'
+block head
+    <link rel='stylesheet' href='/static/ui/send_button.css'>
 block content
     h1 Guestbook
     p.
@@ -25,8 +27,9 @@ block content
                             td
                                 input(type='checkbox' name='hidemail')
                     p(style='margin:6px 0') Your message (512 chars max):
-                    textarea(name='message' style='width:100%;height:150px')
-                    
+                    textarea(name='message' style='width:100%;height:150px;max-width:600px;max-height:300px')
+                    p
+                        input(type='submit' class='send_button_1')
             td(style='padding:0 16px;margin:0')
                 h5 Guidelines
                 ul
@@ -34,7 +37,7 @@ block content
                     li
                         | Do not post spam ads, keep it for humans.
                         ul
-                            li There is no captcha for a reason. I'd like it to stay like this for as long as possible, so I humbly ask not to ruin it.
+                            li There is no captcha for a reason. I'd like to keep it this way for as long as possible, so I humbly ask not to ruin it.
                 span(style='font-size:10pt;color:darkred;font-weight:bold').
                     Warning: Your ip (#{ip}) will be logged and displayed for everyone.<br/>
                     You can delete your own message if it was sent from the same ip for 24 hours after it was sent.
