@@ -16,17 +16,21 @@ async function handler(req, res, next) {
 
         const errors = req.query.error;
 
-        let data = {};
         let sqldata = await Sequelize.Guestbook.findAll({
             where: {
                 hidden: false
-            }
+            },
+            order: [
+                ['id', 'DESC']
+            ]
         });
         if (!sqldata) throw new Error('Failed to get guestbook entries');
 
-        for (let i = 0; i != sqldata.length; i++) {
+        /*for (let i = 0; i != sqldata.length; i++) {
             data[sqldata[i].id] = sqldata[i];
-        }
+        }*/
+
+        const data = sqldata;
 
         res.send(await Helpers.ViewLoader.load('guestbook.pug', {
             current_route: req.originalUrl,

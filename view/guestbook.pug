@@ -86,7 +86,7 @@ block content
         p No records available.
     else
         table(class='gb_entries')
-            each entry, id in data
+            each entry, i in data
                 tr(id='gb_entry_' + id)
                     td(width='20%' class='gb_sender_data')
                         p(style='font-size:9pt')
@@ -96,7 +96,8 @@ block content
                             | Sender: #{entry.name}
                             br
                             if (!entry.hidemail)
-                                | Email: #{entry.email}
+                                | Email: 
+                                a(href='mailto:' + entry.email)= entry.email
                             else
                                 | Email: 
                                 span(class='gb_hidden_mail' style='width:' + (10 * entry.email.length) + 'px')
