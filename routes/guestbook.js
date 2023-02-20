@@ -43,6 +43,11 @@ async function submit(req, res, next) {
     const { name, email, message } = req.body; 
     const hidemail = req.body.hidemail ? (req.body.hidemail == 'on' ? true : false) : false;
 
+    if (message.length >= 512) {
+        res.redirect('/guestbook?error=' + encodeURIComponent('Maximum length is 512 characters.'));
+        return;
+    }
+
     let data = await Sequelize.Guestbook.create({
         name,
         email,
