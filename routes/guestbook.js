@@ -2,13 +2,8 @@ const Helpers = require('../helpers');
 const Sequelize = require('../models');
 const html_escape = require('html-escaper');
 
-const send_error = async (req, res, error, data) => {
-    res.send(await Helpers.ViewLoader.load('guestbook.pug', {
-        current_route: req.originalUrl,
-        ip: req.ip,
-        errors: error,
-        data
-    }));
+const send_error = async (res, error) => {
+    return res.redirect('/guestbook?error=' + encodeURIComponent(error));
 };
 
 async function handler(req, res, next) {
@@ -43,8 +38,28 @@ async function submit(req, res, next) {
     const { name, email, message } = req.body; 
     const hidemail = req.body.hidemail ? (req.body.hidemail == 'on' ? true : false) : false;
 
+    let errors = [];
+
     if (message.length >= 512) {
-        res.redirect('/guestbook?error=' + encodeURIComponent('Maximum length is 512 characters.'));
+        errors.push('Maximum length is 512 characters.');
+    }
+    if (name == '') {
+        errors.push('Name must be specified.');
+    }
+    if (
+        !email
+        .toLowerCase()
+        .match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+        &&
+        email !== ''
+    ) {
+        errors.push('Email is of invalid format.');
+    }
+    if (message == '') {
+        errors.push('Message should not be empty!');
+    }
+    if (errors.length !== 0) {
+        send_error(res, "<p>" + errors.join('<br/>') + "</p>");
         return;
     }
 

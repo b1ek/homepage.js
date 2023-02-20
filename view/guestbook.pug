@@ -100,7 +100,7 @@ block content
                                 a(href='mailto:' + entry.email)= entry.email
                             else
                                 | Email: 
-                                span(class='gb_hidden_mail' style='width:' + (10 * entry.email.length) + 'px')
+                                span(class='gb_hidden_mail' style='width:' + (10 * (entry.email || '.').length) + 'px')
                             br
                             | IP: #{entry.ip}
                             br
