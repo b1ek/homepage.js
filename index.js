@@ -21,7 +21,15 @@ let RedisStore = require("connect-redis")(session)
 
 const { APP_PORT, APP_KEY } = process.env;
 
-
+app.use((req, res, next) => {
+	req.start = Date.now();
+	res.on('header', (res) => {
+		let time = Date.now() - req.start;
+		console.log(time)
+		res.setHeader('X-Reponse-Time', time);
+	})
+	next();
+});
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(cookie_parse(APP_KEY))

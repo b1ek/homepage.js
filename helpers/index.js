@@ -1,3 +1,4 @@
 module.exports = {
-    ViewLoader: require('./view_loader')
+    ViewLoader: require('./view_loader'),
+    TimeSince: require('./timesince')
 }

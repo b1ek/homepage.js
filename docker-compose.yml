@@ -32,6 +32,15 @@ services:
       - './data/db:/var/lib/postgresql'
     networks:
       - homepage
+  adminer:
+    image: adminer:standalone
+    ports:
+      - '8001:8080'
+    networks:
+      - homepage
+    environment:
+      ADMINER_DEFAULT_SERVER: postgres
+      ADMINER_DESIGN: rmsoft
 
 networks:
   homepage:

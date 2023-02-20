@@ -1,6 +1,34 @@
 extends layout/main.pug
 block root
     - var title = 'Guestbook'
+    -
+        function TimeSince(date) {
+
+            var seconds = Math.floor((new Date() - date) / 1000);
+        
+            var interval = seconds / 31536000;
+        
+            if (interval > 1) {
+                return Math.floor(interval) + " years";
+            }
+            interval = seconds / 2592000;
+            if (interval > 1) {
+                return Math.floor(interval) + " months";
+            }
+            interval = seconds / 86400;
+            if (interval > 1) {
+                return Math.floor(interval) + " days";
+            }
+            interval = seconds / 3600;
+            if (interval > 1) {
+                return Math.floor(interval) + " hours";
+            }
+            interval = seconds / 60;
+            if (interval > 1) {
+                return Math.floor(interval) + " minutes";
+            }
+            return Math.floor(seconds) + " seconds";
+        }
 block head
     <link rel='stylesheet' href='/static/ui/send_button.css'>
     <link rel='stylesheet' href='/static/ui/gb_ui.css'>
@@ -18,19 +46,26 @@ block content
                         tr
                             td Your name:
                             td
-                                input(type='text'  name='name'  value='John Doe')
+                                input(type='text' name='name' value='' style='width:50%')
+                                span(style='font-size:9pt;color:red;user-select:none' title='required')  *
                         tr
                             td Your email:
                             td
-                                input(type='email' name='email' value='john.doe@example.com')
+                                input(type='email' name='email' value='')
                         tr
                             td Hide your email?
                             td
                                 input(type='checkbox' name='hidemail')
-                    p(style='margin:6px 0') Your message (512 chars max):
+                                // span(style='font-size:9pt;color:red;user-select:none' title='required')  *
+                    p(style='margin:6px 0')
+                        | Your message (512 chars max):
+                        span(style='font-size:9pt;color:red;user-select:none' title='required')  *
                     textarea(name='message' style='width:100%;height:150px;max-width:600px;max-height:300px')
                     p
                         input(type='submit' class='send_button_1')
+                        if (errors)
+                            br
+                            span(style='font-weight:bold;color:darkred;font-size:9pt') !{errors}
             td(style='padding:0 16px;margin:0')
                 h5 Guidelines
                 ul
@@ -42,22 +77,38 @@ block content
                 span(style='font-size:10pt;color:darkred;font-weight:bold').
                     Warning: Your ip (#{ip}) will be logged and displayed for everyone.<br/>
                     You can delete your own message if it was sent from the same ip for 24 hours after it was sent.
+                p
+                    span(style='font-size:9pt;color:red;user-select:none' title='required') *
+                    |  - required
     hr
 
     if (!data)
         p No records available.
     else
-        table
+        table(class='gb_entries')
             each entry, id in data
-                tr
+                tr(id='gb_entry_' + id)
                     td(width='20%' class='gb_sender_data')
-                        p(style='font-size:9pt').
-                            ID: <a id='gb_entry_#{id}' href='#gb_entry_#{id}'>##{id}</a><br/>
-                            Sender: #{entry.name}<br/>
-                            Email: #{entry.email}<br/>
-                            IP: #{entry.ip}<br/>
-                        //  Date: #{new Date(entry.time).toISOString()}<br/>
+                        p(style='font-size:9pt')
+                            | ID: 
+                            a(href='gb_entry_' + entry.id) ##{entry.id}
+                            br
+                            | Sender: #{entry.name}
+                            br
+                            if (!entry.hidemail)
+                                | Email: #{entry.email}
+                            else
+                                | Email: 
+                                span(class='gb_hidden_mail' style='width:' + (10 * entry.email.length) + 'px')
+                            br
+                            | IP: #{entry.ip}
+                            br
+                            | Date: #{TimeSince(new Date(entry.time * 1000))} ago
+
+                        if (ip == entry.ip && Math.floor(Date.now() / 1000) - entry.time <= (60 * 60 * 24))
+                            p(style='margin:0;padding:0;padding-bottom:12px')
+                                a(href='/guestbook/del/' + id class='gb_record_del_btn' title='you can delete your own messages') delete
                     td(width='80%' class='gb_entry_text')
                         p(class='gb_entry_text_title') Message:
                         p(style='margin:0;padding:0;font-size:10pt').
-                            hiii
+                            #{entry.text}

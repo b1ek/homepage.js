@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, DataTypes) {
-    await queryInterface.createTable('Guestbooks', {
+    await queryInterface.createTable('guestbook', {
       id: {
         type: DataTypes.BIGINT(11),
         primaryKey: true,

@@ -15,6 +15,7 @@ function css(cb) {
 
 
 gulp.task("serve_dev", (cb) => {
+    console.log('Running in dev mode');
     console.log('Launching node...');
     let node = spawn('node', ['--inspect=0.0.0.0', 'index.js'], {stdio: 'inherit'})
 
