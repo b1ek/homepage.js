@@ -87,11 +87,11 @@ block content
     else
         table(class='gb_entries')
             each entry, i in data
-                tr(id='gb_entry_' + id)
+                tr(id='gb_entry_' + entry.id)
                     td(width='20%' class='gb_sender_data')
                         p(style='font-size:9pt')
                             | ID: 
-                            a(href='gb_entry_' + entry.id) ##{entry.id}
+                            a(href='#gb_entry_' + entry.id) ##{entry.id}
                             br
                             | Sender: #{entry.name}
                             br
@@ -108,7 +108,7 @@ block content
 
                         if (ip == entry.ip && Math.floor(Date.now() / 1000) - entry.time <= (60 * 60 * 24))
                             p(style='margin:0;padding:0;padding-bottom:12px')
-                                a(href='/guestbook/del/' + id class='gb_record_del_btn' title='you can delete your own messages') delete
+                                a(href='/guestbook/del/' + entry.id class='gb_record_del_btn' title='you can delete your own messages') delete
                     td(width='80%' class='gb_entry_text')
                         p(class='gb_entry_text_title') Message:
                         p(style='margin:0;padding:0;font-size:10pt').
