@@ -5,7 +5,7 @@ async function handler(req, res) {
         await Helpers.ViewLoader.load(
             'project.pug',
             {
-                current_route: '/'
+                current_route: '/project'
             }
         )
     );
