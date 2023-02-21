@@ -1,6 +1,7 @@
 extends ../layout/project.pug
 block root
     - var title = 'blek! Bin'
+    include ../lib/since.pug
 
 block append content
     h2 blek! Bin
@@ -17,5 +18,6 @@ block append content
         a(href='https://github.com/hnhx/librebin') Librebin
         | , which is built on bare PHP and the code is barely readable or maintainable.
         br
-        | Also, Librebin has only 8 commits and the last commit was on May 30 2022 (at this moment).
-    
+        | Also, Librebin has only 8 commits and the last commit was on May 30 2022 (at this moment), or 
+        span(style='background:#30303010;padding:2px 4px;border:1px solid #c2c4c2;font-size:10pt;border-radius:8px')
+            | #{TimeSince(new Date(2022, 6, 30))} ago
