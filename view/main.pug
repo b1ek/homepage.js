@@ -23,13 +23,14 @@ block content
                 h4 Guest book 
                     | (
                     a(href='/guestbook.rss') RSS
-                    | )             
-                ul
-                    li entry                
-                    li entry
-                    li entry
-                    li entry
-                    li entry
+                    | )
+                if (gb_entries)
+                    ul(style='margin:0 10px;padding:0')
+                        each entry in gb_entries
+                            li(style='padding-bottom:10px')
+                                | #{entry.name} says:
+                                br
+                                | #{entry.text}
                 a(href='/guestbook') Write something in my guestbook!
             td(width='50%' style='border-left:1px solid #c2c4c2;border-right:1px solid #c2c4c2;padding:0 1%')
                 h3 Blog
