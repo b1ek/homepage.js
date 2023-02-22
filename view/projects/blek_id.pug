@@ -1,9 +1,12 @@
 extends ../layout/project.pug
 block root
     - var title = 'blek! Sail'
+    include ../ui/label.pug
 
 block append content
-    h2 blek! ID
+    h2
+        | blek! ID 
+        +label('Abandoned', '#B9CEDB')
     p
         | blek! ID provides authentication functionality for all blek! Services.
         br

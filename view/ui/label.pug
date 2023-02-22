@@ -3,9 +3,12 @@ mixin label(text, base_color)
     -
         var color = base_color || '#F9F9F9';
         var dark_color = pSBC(-0.2, color);
+        var text_color = pSBC(-0.75, dark_color);
     span(
         class='ui_custom_label'
         style=";background-color:" + color +
-            ";background:linear-gradient(to bottom, " + color + " 50%, " + dark_color + " 100%)" +
-            ";border:1px solid " + pSBC(-0.2, dark_color)
+            ";background:linear-gradient(to bottom," + color + " 50%," + dark_color + " 100%)" +
+            ";border:1px solid " + pSBC(-0.2, dark_color) +
+            ";box-shadow:inset 0px 1px 0px 0px " + pSBC(0.75, color) +
+            ";color:" + text_color
     )= text
