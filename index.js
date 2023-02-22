@@ -21,15 +21,6 @@ let RedisStore = require("connect-redis")(session)
 
 const { APP_PORT, APP_KEY } = process.env;
 
-app.use((req, res, next) => {
-	req.start = Date.now();
-	res.on('header', (res) => {
-		let time = Date.now() - req.start;
-		console.log(time)
-		res.setHeader('X-Reponse-Time', time);
-	})
-	next();
-});
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(cookie_parse(APP_KEY))
@@ -47,8 +38,17 @@ app.use(require('./routes'));
 app.use(express.static('public'));
 
 // 404
-app.use((req, res, next) => {
-
+app.use(async (req, res, next) => {
+	try {
+		if (res.headersSent) return next();
+		const Helpers = require('./helpers');
+		res.status(404).send(await Helpers.ViewLoader.load('error.pug', {
+			error: '404 Not Found',
+			message: 'The requested page was not found.'
+		}))
+	} catch (err) { 
+		next(err);
+	}
 })
 
 
