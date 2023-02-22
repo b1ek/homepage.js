@@ -1,0 +1,10 @@
+extends layout/main.pug
+block root
+    - var title = 'About me'
+    include ui/label.pug
+block content
+    h2 About me page
+    hr
+    p
+        +label('TODO:', '#a3f4bf')
+        |  Write about me
