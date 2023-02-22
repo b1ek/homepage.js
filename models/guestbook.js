@@ -1,49 +1,49 @@
-const { Model } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 
 class Guestbook extends Model {
-  /**
-   * Helper method for defining associations.
-   * This method is not a part of Sequelize lifecycle.
-   * The `models/index` file will call this method automatically.
-   */
-  static associate(models) {
-    // define association here
-  }
+  
 }
 
+Guestbook.structure = {
+  id: {
+    type: DataTypes.BIGINT(11),
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false
+  },
+  name: {
+    type: DataTypes.TEXT,
+    allowNull: false
+  },
+  email: DataTypes.TEXT,
+  text: {
+    type: DataTypes.TEXT,
+    allowNull: false
+  },
+  hidemail: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false
+  },
+  ip: {
+    type: DataTypes.TEXT,
+    allowNull: false
+  },
+  hidden: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false
+  },
+  time: {
+    type: DataTypes.BIGINT
+  }
+};
+
+/**
+ * @param {import('sequelize').Sequelize} sequelize 
+ * @param {import('sequelize').DataTypes} DataTypes 
+ * @returns Guestbook
+ */
 const init = (sequelize, DataTypes) => {
-  let model = Guestbook.init({
-    id: {
-      type: DataTypes.BIGINT(11),
-      primaryKey: true,
-      autoIncrement: true,
-      allowNull: false
-    },
-    name: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    email: DataTypes.TEXT,
-    text: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    hidemail: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false
-    },
-    ip: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    hidden: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false
-    },
-    time: {
-      type: DataTypes.BIGINT
-    }
-  }, {
+  let model = Guestbook.init(Guestbook.structure, {
     sequelize,
     modelName: 'Guestbook',
     tableName: 'guestbook'
@@ -52,4 +52,4 @@ const init = (sequelize, DataTypes) => {
 };
 
 init.class = Guestbook;
-return init;
+module.exports = init;

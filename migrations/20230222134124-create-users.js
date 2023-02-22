@@ -1,22 +1,14 @@
-'use strict';
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
+  /** @param {import('sequelize').QueryInterface} queryInterface */
   async up (queryInterface, Sequelize) {
-    /**
-     * Add altering commands here.
-     *
-     * Example:
-     * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
-     */
+    const struct = require('../models').User.structure;
+    await queryInterface.createTable('users', struct);
   },
 
+  /** @param {import('sequelize').QueryInterface} queryInterface */
   async down (queryInterface, Sequelize) {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
+    await queryInterface.dropTable('users');
   }
 };

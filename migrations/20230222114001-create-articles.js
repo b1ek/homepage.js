@@ -4,38 +4,8 @@
 module.exports = {
   /** @param {import('sequelize').QueryInterface} queryInterface */
   async up (queryInterface, DataTypes) {
-    queryInterface.createTable('articles', {
-      id: {
-        type: DataTypes.BIGINT(11),
-        primaryKey: true,
-        autoIncrement: true,
-        allowNull: false
-      },
-        title: {
-        type: DataTypes.TEXT,
-        allowNull: false
-      },
-        shortText: {
-        type: DataTypes.TEXT,
-        allowNull: false
-      },
-        body: {
-        type: DataTypes.TEXT,
-        allowNull: false
-      },
-        submitted: {
-        type: DataTypes.BIGINT,
-        allowNull: false
-      },
-        edited: {
-        type: DataTypes.BIGINT,
-        allowNull: false
-      },
-        submitter: {
-        type: DataTypes.BIGINT,
-        allowNull: false
-      }
-    });
+    const struct = require('../models').Article.structure;
+    queryInterface.createTable('articles', struct);
   },
 
   /** @param {import('sequelize').QueryInterface} queryInterface */
