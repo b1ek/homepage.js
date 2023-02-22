@@ -1,0 +1,11 @@
+mixin label(text, base_color)
+    include ../lib/pSBC.pug
+    -
+        var color = base_color || '#F9F9F9';
+        var dark_color = pSBC(-0.2, color);
+    span(
+        class='ui_custom_label'
+        style=";background-color:" + color +
+            ";background:linear-gradient(to bottom, " + color + " 50%, " + dark_color + " 100%)" +
+            ";border:1px solid " + pSBC(-0.2, dark_color)
+    )= text
