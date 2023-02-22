@@ -37,6 +37,8 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Guestbooks');
+    if (await queryInterface.tableExists('guestbook')) {
+      await queryInterface.dropTable('guestbook');
+    }
   }
 };

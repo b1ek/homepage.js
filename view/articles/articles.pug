@@ -1,0 +1,25 @@
+extends ../layout/main.pug
+block root
+    - var title = 'Articles'
+    
+block content
+    h2 Articles
+    p.
+        This is a bunch of articles written by me (like a tech blog of some sort)
+    if articles
+        table(style='max-width:600px;min-width:600px;border-collapse:collapse;border:0')
+            each article of articles
+                tr
+                    td(style='border:1px solid #c2c4c2;box-shadow:0 2px 2px #c2c4c280;border-radius:8px;padding:4px 24px')
+                        h4(style='margin:8px 0;padding:0')
+                            span(style='font-family:monospace') [<a style='font-family:monospace' href='/article/#{article.id}'>##{article.id}</a>] 
+                            = article.title
+                        hr
+                        p= article.shortText
+                        p
+                            a(href='/article/' + article.id) Open full article
+                tr
+                    td
+                        div(style='min-height:12px;max-height:12px')
+    else
+        p Error while loading articles: data is not present
