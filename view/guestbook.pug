@@ -2,6 +2,7 @@ extends layout/main.pug
 block root
     - var title = 'Guestbook'
     include lib/since.pug
+    include ui/label.pug
 block head
     <link rel='stylesheet' href='/static/ui/send_button.css'>
     <link rel='stylesheet' href='/static/ui/gb_ui.css'>
@@ -49,6 +50,10 @@ block content
                         | Do not post spam ads, keep it for humans.
                         ul
                             li There is no captcha for a reason. I'd like to keep it this way for as long as possible, so I humbly ask not to ruin it.
+                    li
+                        | DMCA content is not allowed. If your rights are violated, send your strikes to: 
+                        a(href='mailto:me@blek.codes')
+                            +label('me@blek.codes', '#a0a0b6')
                 span(style='font-size:10pt;color:darkred;font-weight:bold').
                     Warning: Your ip (#{ip}) will be logged and displayed for everyone.<br/>
                     You can delete your own message if it was sent from the same ip for 24 hours after it was sent.
