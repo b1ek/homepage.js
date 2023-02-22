@@ -9,6 +9,19 @@ const process = require('process');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'production';
 let config = require(__dirname + '/../config/config.json')[env];
+
+class Models {
+  sequelize = Sequelize
+  Sequelize = Sequelize
+
+  User = require('./user').class
+  Article = require('./article').class
+  Guestbook = require('./guestbook').class
+}
+
+/**
+ * @type Models
+ */
 const db = {};
 
 const {

@@ -1,19 +1,18 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class Guestbook extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
+const { Model } = require('sequelize');
+
+class Guestbook extends Model {
+  /**
+   * Helper method for defining associations.
+   * This method is not a part of Sequelize lifecycle.
+   * The `models/index` file will call this method automatically.
+   */
+  static associate(models) {
+    // define association here
   }
-  Guestbook.init({
+}
+
+const init = (sequelize, DataTypes) => {
+  let model = Guestbook.init({
     id: {
       type: DataTypes.BIGINT(11),
       primaryKey: true,
@@ -49,5 +48,8 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Guestbook',
     tableName: 'guestbook'
   });
-  return Guestbook;
+  return model;
 };
+
+init.class = Guestbook;
+return init;
