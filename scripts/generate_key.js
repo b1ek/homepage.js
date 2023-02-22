@@ -16,7 +16,8 @@ if (args['help']) {
         '  --set-key: Specify your key\n' +
         '  --dry-run: Don\'t write anything, just do the thing\n' + 
         '  --stdout -s: Don\'t write to file, write to stdout instead'
-    )
+    );
+    process.exit(0);
 }
 
 if (args['key-only']) {
