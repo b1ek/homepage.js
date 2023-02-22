@@ -1,9 +1,12 @@
 extends ../layout/project.pug
 block root
     - var title = 'blek! Sail'
+    include ../ui/label.pug
 
 block append content
-    h2 blek! Sail
+    h2
+        | blek! Sail 
+        +label('Docker', '#5B9FCC')
     p
         | blek! Sail is a production-ready alternative to Laravel Sail.
         br

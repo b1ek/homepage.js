@@ -1,11 +1,16 @@
 extends ../layout/project.pug
 block root
     - var title = 'CuteSchedule'
+    include ../ui/label.pug
 
 block append content
     p(align='center')
         img(src='/content/cuteschedule.png' height=128)
-        <br/>
+        br
+        +label('Abandoned', '#B9CEDB')
+        |  
+        +label('Re-write planned', '#B9CEDB')
+        br
         | CuteSchedule is an interactive menu with a school schedule.
         br
     hr

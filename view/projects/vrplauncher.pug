@@ -1,9 +1,14 @@
 extends ../layout/project.pug
 block root
     - var title = 'VRPLauncher'
+    include ../ui/label.pug
 
 block append content
-    h2 VRPLauncher
+    h2
+        | VRPLauncher 
+        +label('Abandoned', '#B9CEDB')
+        |  
+        +label('Ancient/legacy project', '#A6DFE1')
     p.
         VRPLauncher is a custom minecraft launcher for another project (a minecraft server with mods).<br/>
         It is written in C# with WinForms and is made to keep only specific mods in mods folder (it reports any modifications to the server).
