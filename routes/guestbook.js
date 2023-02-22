@@ -38,8 +38,8 @@ async function submit(req, res, next) {
     const { name, email, message } = req.body; 
     const hidemail = req.body.hidemail ? (req.body.hidemail == 'on' ? true : false) : false;
 
+    // check for errors
     let errors = [];
-
     if (message.length >= 512) {
         errors.push('Maximum length is 512 characters.');
     }
@@ -62,6 +62,30 @@ async function submit(req, res, next) {
         send_error(res, "<p>" + errors.join('<br/>') + "</p>");
         return;
     }
+
+    // actual shit
+
+    let records = await Sequelize.Guestbook.findAll({
+        where: {
+            ip: req.ip
+        }
+    });
+    let latest = 0;
+    for (const record of records) {
+        if (record.time > latest) latest = record.time;
+    }
+    const time = Math.floor(Date.now() / 1000);
+
+    if (time - latest < 60) {
+        res.redirect(
+            '/guestbook?error=' +
+            encodeURIComponent(
+                'You are allowed to send 1 message per minute. You will be able to send next message in ' + ((latest + 60) - time) + ' seconds.'
+            )
+        );
+        return;
+    }
+
 
     let data = await Sequelize.Guestbook.create({
         name,
