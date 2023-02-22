@@ -1,9 +1,12 @@
 extends ../layout/project.pug
 block root
     - var title = 'blek! Analytics'
+    include ../ui/planned_label.pug
 
 block append content
-    h2 blek! Analytics
+    h2
+        | blek! Analytics
+        +planned_label()
     p.
         For now, the project exists just as an idea of creating a self-hosted alternative of Google Analytics.
     p.

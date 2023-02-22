@@ -2,9 +2,12 @@ extends ../layout/project.pug
 block root
     - var title = 'blek! Bin'
     include ../lib/since.pug
+    include ../ui/planned_label.pug
 
 block append content
-    h2 blek! Bin
+    h2
+        | blek! Bin
+        +planned_label()
     p
         | blek! Bin is a free, self-hosted, nojs alternative to 
         a(href='https://pastebin.com') Pastebin
