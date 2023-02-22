@@ -10,5 +10,6 @@ mixin label(text, base_color)
             ";background:linear-gradient(to bottom," + color + " 50%," + dark_color + " 100%)" +
             ";border:1px solid " + pSBC(-0.2, dark_color) +
             ";box-shadow:inset 0px 1px 0px 0px " + pSBC(0.75, color) +
-            ";color:" + text_color
+            ";color:" + text_color +
+            ";text-shadow:0 1px 0 " + pSBC(0.25, color)
     )= text
