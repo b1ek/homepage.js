@@ -4,8 +4,16 @@ PACKAGES="gulp-cli gulper gulp mocha sequelize-cli"
 
 if [[ $APP_DEBUG == 'true' ]]; then
     npm i
+    
+    cd scripts
+    npm i
+    cd ..
 else
     npm i --prod
+
+    cd scripts
+    npm i --prod
+    cd ..
 fi
 
 echo -e "Installing \033[32m$PACKAGES\033[0m"
