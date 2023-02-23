@@ -34,6 +34,11 @@ const structure = {
     gpgkey: {
         type: DataTypes.TEXT,
         allowNull: false
+    },
+    accessLevel: {
+        type: DataTypes.SMALLINT,
+        allowNull: false,
+        defaultValue: 0
     }
 }
 User.structure = structure
