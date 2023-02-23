@@ -6,8 +6,6 @@ module.exports = {
     await queryInterface.createTable('guestbook', struct);
   },
   async down(queryInterface, Sequelize) {
-    if (await queryInterface.tableExists('guestbook')) {
-      await queryInterface.dropTable('guestbook');
-    }
+    await queryInterface.dropTable('guestbook');
   }
 };
