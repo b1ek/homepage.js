@@ -10,8 +10,6 @@ module.exports = {
 
   /** @param {import('sequelize').QueryInterface} queryInterface */
   async down (queryInterface, DataTypes) {
-    if (await queryInterface.tableExists('articles')) {
-      await queryInterface.dropTable('articles');
-    }
+    await queryInterface.dropTable('articles');
   }
 };
