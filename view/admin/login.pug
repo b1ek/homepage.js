@@ -1,0 +1,14 @@
+extends ../layout/main.pug
+block root
+    - var title = 'Login'
+
+block content
+    p Login
+    form(method='POST' action='/admin/login')
+        input(type='text' name='login')
+        br
+        input(type='password' name='pass')
+        br
+        input(type='text' name='totp')
+        br
+        input(type='submit')

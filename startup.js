@@ -1,8 +1,9 @@
 console.log('Executing startup jobs...');
 
 const fs = require('fs');
-const {Base64} = require('js-base64');
 const crc32 = require('crc-32');
+const glob = require('glob');
+const { exec } = require('child_process');
 
 const hrt = () => {
     let hr = process.hrtime();
@@ -24,6 +25,28 @@ if (process.env.APP_DEBUG) {
 // load key
 if (!process.env.APP_KEY)
     throw new Error('APP_KEY is not set.')
+
+// import gpg keys
+glob('data/userdata/*_gpgkey', async (err, files) => {
+    if (err) {
+        console.error(err);
+        process.exit(-1);
+    }
+    files.filter(
+        file => {
+            return !file.startsWith('.')
+        }
+    ).forEach(file => {
+        exec('gpg --import ' + file, (err, stdout, stderr) => {
+            if (err) {
+                console.error(`Errors while importing ${file}: ${err}`);
+                process.exit(-1);
+            }
+            console.log(`Imported ${file} key`);
+        });
+    });
+
+});
 
 // TODO: perhaps a better approach to storing it????
 //                                                               ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
