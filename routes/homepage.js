@@ -5,7 +5,8 @@ async function handler(req, res) {
 
     let gb_entries = await Sequelize.Guestbook.findAll({
         limit: 5,
-        order: [['id', 'DESC']]
+        order: [['id', 'DESC']],
+        where: { hidden: false }
     });
 
     res.send(
