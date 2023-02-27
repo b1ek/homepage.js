@@ -22,13 +22,25 @@ async function apiLogin(req, res) {
     }
     const session = await user.createSession();
     req.session.user = session;
-    res.send(req.session);
-    //res.redirect('/admin/panel');
+    res.redirect('/admin/panel');
+    return;
+}
+
+async function panel(req, res) {
+    res.send(await Helpers.ViewLoader.load('admin/panel.pug', {
+        current_route: req.originalUrl
+    }));
     return;
 }
 
 module.exports = (router) => {
+
+    // login
     router.get('/login', handler(login));
     router.get('/admin/login', handler(login));
     router.post('/admin/login', handler(apiLogin));
+
+    // panel
+    router.get('/admin/panel', handler(panel));
+
 }
