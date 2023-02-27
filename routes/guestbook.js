@@ -170,7 +170,7 @@ async function rss(req, res) {
         });
     }
 
-    let ident = 4;
+    let ident = 0;
     if (req.query.ident) ident = req.query.ident;
 
     res.header('Content-Type', 'application/rss+xml');
