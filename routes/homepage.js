@@ -9,12 +9,17 @@ async function handler(req, res) {
         where: { hidden: false }
     });
 
+    let articles = await Sequelize.Article.findAll({
+        limit: 5
+    });
+
     res.send(
         await Helpers.ViewLoader.load(
             'main.pug',
             {
                 current_route: '/',
-                gb_entries
+                gb_entries,
+                articles
             }
         )
     );

@@ -35,11 +35,11 @@ block content
             td(width='50%' style='border-left:1px solid #c2c4c2;border-right:1px solid #c2c4c2;padding:0 1%')
                 h3 Blog
                 ul
-                    each i in [0,0,0,0,0]
+                    each article in articles
                         li(style='font-size:16pt')
-                            | entry
+                            h5= article.title
                             ul
-                                li data
+                                li= article.shortText
             
             td(width='20%')
                 h4 Links
