@@ -20,16 +20,16 @@ block content
                         tr
                             td Your name:
                             td
-                                input(type='text' name='name' value='' + name style='width:50%')
+                                input(type='text' name='name' value='' + (name ? name : '') style='width:50%')
                                 span(style='font-size:9pt;color:red;user-select:none' title='required')  *
                         tr
                             td Your email:
                             td
-                                input(type='email' name='email' value='' + email)
+                                input(type='email' name='email' value='' + (email ? email : ''))
                         tr
                             td Hide your email?
                             td
-                                input(type='checkbox' name='hidemail' checked=hidemail)
+                                input(type='checkbox' name='hidemail' checked=(hidemail ? true : 'off'))
                                 // span(style='font-size:9pt;color:red;user-select:none' title='required')  *
                     p(style='margin:6px 0')
                         | Your message (512 chars max):
