@@ -29,7 +29,8 @@ async function handler(req, res, next) {
             data,
             errors,
             name: req.session.gb_name,
-            email: req.session.gb_email
+            email: req.session.gb_email,
+            hidemail: req.session.gb_hidemail
         }));
         return;
     } catch (err) {
@@ -68,6 +69,7 @@ async function submit(req, res, next) {
 
     req.session.gb_name = name;
     req.session.gb_email = email;
+    req.session.gb_hidemail = req.body.hidemail;
 
     // actual shit
     let records = await Sequelize.Guestbook.findAll({
@@ -148,7 +150,7 @@ async function rss(req, res) {
         {
             channel: [
                 {title: 'Guestbook'},
-                {link: 'http://blek.codes/guestbook'},
+                {link: req.protocol + '://' + req.get('host') + '/guestbook'},
                 {description: 'Alice\'s guestbook'},
             ]
         }]
