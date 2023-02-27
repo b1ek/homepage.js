@@ -39,6 +39,8 @@ async function panel(req, res) {
         order: [['id', 'DESC']]
     });
 
+    const articles = await db.Article.findAll({where: {hidden: true}});
+
     res.send(await Helpers.ViewLoader.load('admin/panel.pug', {
         current_route: req.originalUrl,
         gb_records,

@@ -38,6 +38,11 @@ Article.structure = {
     gpgsign: {
         type: DataTypes.TEXT,
         allowNull: true
+    },
+    hidden: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
     }
 };
 

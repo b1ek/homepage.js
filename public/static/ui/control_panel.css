@@ -1,8 +1,15 @@
+.control_panel {
+    border-collapse: separate;
+    border-spacing: 5px;
+}
 .cp_panel_panel {
     border: 1px solid #c2c4c2;
-    padding: 4px;
+    border-radius: 2px;
+    padding: 4px 8px;
     min-height: 300px;
     font-size: 9pt;
+    max-width: 386px;
+    box-shadow: 0 2px 1px #20202010;
 }
 .cp_panel_panel h5 {
     font-size: 1.1em;

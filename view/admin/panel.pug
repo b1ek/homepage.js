@@ -13,7 +13,7 @@ block content
             | Warning: Your access level is unkown, so everything is displayed and some funtions may not work.
         hr
         - access_level = 4
-    table
+    table(class='control_panel')
         tr
             td(class='cp_panel_panel')
                 h5 Guestbook panel
@@ -25,19 +25,26 @@ block content
                         a(href='/admin/panel/guestbook.csv') Download data (.CSV)
                         br
                         a(href='/admin/panel/guestbook.csv') Download data (SQL)
-                form(action='/admin/panel/gb_api')
-                    h5 Import from file
-                    label(for='filetype') File type: 
-                    select(name='filetype')
-                        option(value='csv') .CSV
-                        option(value='sql') SQL
-                    br
-                    input(type='file' name='file')
-                    br
-                    input(type='submit' name='import' value='Send')
+                if (access_level >= 4)
+                    div(style='padding-left:4px')
+                        form(action='/admin/panel/gb_api')
+                            h5 Import from file
+                            p
+                                b WARNING: 
+                                | All the records will be removed and replaced with your values!
+                            label(for='filetype') File type: 
+                            select(name='filetype')
+                                option(value='csv') .CSV
+                                option(value='sql') .TSV
+                            br
+                            input(type='file' name='file')
+                            br
+                            input(type='submit' name='import' value='Send')
                 hr
                 div(style='max-height:160px;overflow-y:scroll')
                     table
+                        if (!gb_records || gb_records.length == 0)
+                            p Nothing to show.
                         each record of gb_records
                             tr(class='' + (record.hidden ? 'cp_gb_entry_hidden' : ''))
                                 form(action='/admin/panel/gb_api' method='POST')
@@ -56,4 +63,23 @@ block content
                                                 input(type='submit' name='hide' value='Hide')
                                             else
                                                 input(type='submit' name='hide' value='Unhide')
-                                    
+            td(class='cp_panel_panel')
+                h5 Articles
+                hr
+                p
+                    a(href='/admin/article/new') Create new article
+                    if (access_level >= 4)
+                        br
+                        a(href='/admin/articles.csv') Download data (.CSV)
+                        br
+                        a(href='/admin/articles.sql') Download data (SQL)
+                    div(style='padding-left:4px')
+                        form(action='/admin/panel/article_api' method='POST')
+                            h5 Import from file
+                            p
+                                b WARNING:
+                                | All the records will be removed and replaced with your values!
+                hr
+                if (!articles)
+                    p Nothing to show.
+                

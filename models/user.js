@@ -73,7 +73,8 @@ class User extends Model {
      * @returns User
      */
     static async bySession(session) {
-        if (!session.user.user_id) return;
+        if (session.user == undefined) return;
+        if (session.user.user_id == undefined) return;
         const user = await User.findOne({where: {id: session.user.user_id}});
         if (!user) {
             return false;
