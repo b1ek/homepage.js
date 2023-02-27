@@ -173,7 +173,7 @@ async function rss(req, res) {
     let ident = 4;
     if (req.query.ident) ident = req.query.ident;
 
-    res.header('Content-Type', 'text/plain');
+    res.header('Content-Type', 'application/rss+xml');
     res.send(xml(rss, {indent: ' '.repeat(ident)}));
     return;
 }
