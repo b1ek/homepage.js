@@ -90,7 +90,7 @@ module.exports = (router) => {
             return;
         }
         
-        if (user.accessLevel < 4 || true) {
+        if (user.accessLevel < 4) {
             res.status(401).send('Forbidden');
             return;
         }
