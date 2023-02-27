@@ -1,6 +1,7 @@
 const handler   = require('express-async-handler')
 const Helpers   = require('../helpers');
 const db        = require('../models');
+const express   = require('express');
 
 async function login(req, res) {
     res.send(await Helpers.ViewLoader.load('admin/login.pug', {
@@ -28,13 +29,20 @@ async function apiLogin(req, res) {
 
 async function panel(req, res) {
 
+    const user = await db.User.bySession(req.session);
+    if (!user) {
+        res.status(401).send('Forbidden');
+        return;
+    }
+
     const gb_records = await db.Guestbook.findAll({
         order: [['id', 'DESC']]
     });
 
     res.send(await Helpers.ViewLoader.load('admin/panel.pug', {
         current_route: req.originalUrl,
-        gb_records
+        gb_records,
+        access_level: user.accessLevel
     }));
     return;
 }
@@ -42,6 +50,11 @@ async function panel(req, res) {
 async function gb_api(req, res) {
     let action = false;
     const id = req.body.id;
+    const user = await db.User.bySession(req.session);
+    if (!user) {
+        res.status(401).send('Forbidden');
+        return;
+    }
 
     if (req.body.hide) action = 'hide';
 
@@ -65,8 +78,30 @@ module.exports = (router) => {
     router.get('/admin/login', handler(login));
     router.post('/admin/login', handler(apiLogin));
 
+    // level 4 access routes
+    /** @type {express.Router} */
+    const l4_router = new express.Router();
+    l4_router.use(handler(async (req, res, next) => {
+        const user = await db.User.bySession(req.session);
+        if (!user) {
+            res.status(401).send('Forbidden');
+            return;
+        }
+        
+        if (user.accessLevel < 4 || true) {
+            res.status(401).send('Forbidden');
+            return;
+        }
+
+
+        req.user = user;
+        return next();
+    }));
+    l4_router.post('/admin/panel/gb_api', handler(gb_api));
+
+    router.use('/admin/panel/*', l4_router);
+
+    
     // panel
     router.get('/admin/panel', handler(panel));
-    router.post('/admin/panel/gb_api', handler(gb_api));
-
 }

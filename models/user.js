@@ -66,6 +66,20 @@ class User extends Model {
         session.secret = crypto.randomBytes(256).toString('base64');
         return session;
     }
+
+    /**
+     * Get a user object from express session
+     * @param {*} session 
+     * @returns User
+     */
+    static async bySession(session) {
+        if (!session.user.user_id) return;
+        const user = await User.findOne({where: {id: session.user.user_id}});
+        if (!user) {
+            return false;
+        }
+        return user;
+    }
 }
 
 const structure = {

@@ -14,9 +14,14 @@
     color: blue;
     font-size: 100%;
 }
+.cp_panel_panel p {
+    margin: 2px 0;
+    padding: 0;
+}
 .cp_gb_entry_hidden {
     filter: opacity(0.7)
 }
+
 input[type=submit] {
     cursor: pointer;
 }
