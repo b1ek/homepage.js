@@ -1,6 +1,7 @@
 const Helpers = require('../helpers');
 const Sequelize = require('../models');
 const html_escape = require('html-escaper');
+const xml = require('xml');
 
 const send_error = async (res, error) => {
     return res.redirect('/guestbook?error=' + encodeURIComponent(error));
@@ -133,8 +134,47 @@ async function del(req, res, next) {
     catch (err) { next(err); }
 }
 
+async function rss(req, res) {
+    const data = (await Sequelize.Guestbook.findAndCountAll({where: {hidden: false}})).rows;
+
+    let rss = [{
+        rss: [{
+            _attr: {version: '2.0'}
+        },
+        {
+            channel: [
+                {title: 'Guestbook'},
+                {link: 'http://blek.codes/guestbook'},
+                {description: 'Alice\'s guestbook'},
+            ]
+        }]
+    }]
+
+    for (const record of data) {
+        console.log(record);
+        if (record.hidemail)
+            record.email = ('?'.repeat(record.email.split('@')[0].length)) + '@?.?';
+
+        rss[0].rss[1].channel.push({
+            item: [
+                {description: record.text},
+                {author: `"${record.name}"${record.email ? (' at ' + record.email) : ''}`},
+                {link: req.protocol + '://' + req.get('host') + '/guestbook#gb_entry_' + record.id}
+            ]
+        });
+    }
+
+    let ident = 4;
+    if (req.query.ident) ident = req.query.ident;
+
+    res.header('Content-Type', 'text/plain');
+    res.send(xml(rss, {indent: ' '.repeat(ident)}));
+    return;
+}
+
 module.exports = (router) => {
     router.get('/guestbook', handler);
     router.post('/guestbook/submit', submit);
     router.get('/guestbook/del/:id', del);
+    router.get('/guestbook.rss', rss);
 }

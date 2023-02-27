@@ -36,6 +36,7 @@
     "redis": "^4.6.4",
     "sequelize": "^7.0.0-alpha.9",
     "totp-generator": "^0.0.14",
-    "unit.js": "^2.1.1"
+    "unit.js": "^2.1.1",
+    "xml": "^1.0.1"
   }
 }
