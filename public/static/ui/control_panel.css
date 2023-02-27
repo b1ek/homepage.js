@@ -1,0 +1,22 @@
+.cp_panel_panel {
+    border: 1px solid #c2c4c2;
+    padding: 4px;
+    min-height: 300px;
+    font-size: 9pt;
+}
+.cp_panel_panel h5 {
+    font-size: 1.1em;
+    margin: 3px 0;
+    padding: 0;
+}
+.cp_panel_panel a {
+    text-decoration: underline;
+    color: blue;
+    font-size: 100%;
+}
+.cp_gb_entry_hidden {
+    filter: opacity(0.7)
+}
+input[type=submit] {
+    cursor: pointer;
+}

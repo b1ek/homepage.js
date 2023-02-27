@@ -1,0 +1,46 @@
+extends ../layout/main.pug
+block root
+    - var title = 'Admin panel'
+
+block head
+    link(rel='stylesheet' href='/static/ui/control_panel.css')
+
+block content
+    h2 Admin panel
+    hr
+    if !access_level
+        p(style='color:#a02020;font-weight:bold;font-size:1em')
+            | Warning: Your access level is unkown, so everything is displayed and some funtions may not work.
+        hr
+        - access_level = 4
+    table
+        tr
+            td(class='cp_panel_panel')
+                h5 Guestbook panel
+                hr
+                p
+                    a(href='/admin/panel/guestbook.editor') Edit data
+                    br
+                    a(href='/admin/panel/guestbook.csv') Download data (.CSV)
+                    br
+                    a(href='/admin/panel/guestbook.csv') Download data (SQL)
+                hr
+                table
+                    each record of gb_records
+                        tr(class='' + (record.hidden ? 'cp_gb_entry_hidden' : ''))
+                            form(action='/admin/panel/gb_api' method='POST')
+                                input(type='hidden' name='id' value=record.id)
+                                td
+                                    a(href='/guestbook#gb_entry_' + record.id)= record.id
+                                    | : #{record.name}
+                                td
+                                    if (record.text.length > 40)
+                                        | #{record.text.substr(0, 40)}...
+                                    else
+                                        | #{record.text}
+                                td
+                                    if (!record.hidden)
+                                        input(type='submit' name='hide' value='Hide')
+                                    else
+                                        input(type='submit' name='hide' value='Unhide')
+                                

@@ -27,10 +27,35 @@ async function apiLogin(req, res) {
 }
 
 async function panel(req, res) {
+
+    const gb_records = await db.Guestbook.findAll({
+        order: [['id', 'DESC']]
+    });
+
     res.send(await Helpers.ViewLoader.load('admin/panel.pug', {
-        current_route: req.originalUrl
+        current_route: req.originalUrl,
+        gb_records
     }));
     return;
+}
+
+async function gb_api(req, res) {
+    let action = false;
+    const id = req.body.id;
+
+    if (req.body.hide) action = 'hide';
+
+    if (!action) {
+        res.redirect('/admin/panel');
+        return;
+    }
+    
+    switch (action) {
+        case 'hide':
+            const response = await db.Guestbook.update({hidden: db.Sequelize.literal('NOT hidden')}, {where: {id}})
+            res.redirect('/admin/panel');
+            return;
+    }
 }
 
 module.exports = (router) => {
@@ -42,5 +67,6 @@ module.exports = (router) => {
 
     // panel
     router.get('/admin/panel', handler(panel));
+    router.post('/admin/panel/gb_api', handler(gb_api));
 
 }
