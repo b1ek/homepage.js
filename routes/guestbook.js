@@ -27,7 +27,9 @@ async function handler(req, res, next) {
             current_route: req.originalUrl,
             ip: req.ip,
             data,
-            errors
+            errors,
+            name: req.session.gb_name,
+            email: req.session.gb_email
         }));
         return;
     } catch (err) {
@@ -64,8 +66,10 @@ async function submit(req, res, next) {
         return;
     }
 
-    // actual shit
+    req.session.gb_name = name;
+    req.session.gb_email = email;
 
+    // actual shit
     let records = await Sequelize.Guestbook.findAll({
         where: {
             ip: req.ip
