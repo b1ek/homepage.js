@@ -73,6 +73,10 @@ async function gb_api(req, res) {
     }
 }
 
+async function article_new(req, res) {
+    res.send(await Helpers.ViewLoader.load('articles/new.pug'))
+}
+
 module.exports = (router) => {
 
     // login
@@ -80,30 +84,12 @@ module.exports = (router) => {
     router.get('/admin/login', handler(login));
     router.post('/admin/login', handler(apiLogin));
 
-    // level 4 access routes
-    /** @type {express.Router} */
-    const l4_router = new express.Router();
-    l4_router.use(handler(async (req, res, next) => {
-        const user = await db.User.bySession(req.session);
-        if (!user) {
-            res.status(401).send('Forbidden');
-            return;
-        }
-        
-        if (user.accessLevel < 4) {
-            res.status(401).send('Forbidden');
-            return;
-        }
-
-
-        req.user = user;
-        return next();
-    }));
-    l4_router.post('/admin/panel/gb_api', handler(gb_api));
-
-    router.use('/admin/panel/*', l4_router);
+    router.post('/gb_api', handler(gb_api));
 
     
     // panel
     router.get('/admin/panel', handler(panel));
+
+    // article
+    router.get('/admin/article/new', handler(article_new));
 }
