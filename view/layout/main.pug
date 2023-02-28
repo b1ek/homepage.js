@@ -37,11 +37,25 @@ html(style='overflow-y:auto')
                                         | > #{name}
                                     else
                                         a(href=route) #{name}
+
+                    hr
+                    p This site is also available in:
+                    p
+                        a(href='#' id='aussy_language')
+                            span(class='flag_btn au_flag' title='Australian')
                 td(class='main_contents')
                     block content
         block foot
-        block scripts
+        
+        // js dependencies
+        script(src='/static/js/jquery.js')
+
+        // global js
+        script(src='/static/js/main.js')
         script(type='text/javascript').
             setTimeout(function() {
                 alert('Congratulations! You have spent 10 years on this page. Go fuck yourself.\n\nUwU');
             }, 1000 * 60 * 60 * 24 * 365 * 10);
+
+        // page js
+        block scripts
