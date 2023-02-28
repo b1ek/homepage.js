@@ -42,23 +42,24 @@ block content
                             input(type='submit' name='import' value='Send')
                 hr
                 div(style='max-height:160px;overflow-y:scroll')
-                    table
+                    table(width='100%')
                         if (!gb_records || gb_records.length == 0)
                             p Nothing to show.
                         each record of gb_records
-                            tr(class='' + (record.hidden ? 'cp_gb_entry_hidden' : ''))
+                            tr(class='cp_gb_entry' + (record.hidden ? ' cp_gb_entry_hidden' : ''))
                                 form(action='/admin/panel/gb_api' method='POST')
                                     input(type='hidden' name='id' value=record.id)
-                                    td
+                                    td(class='cp_gb_entry_name')
                                         a(href='/guestbook#gb_entry_' + record.id)= record.id
-                                        | : #{record.name}
+                                        | : 
+                                        b= record.name + ' says:'
                                     td
-                                        if (record.text.length > 40)
-                                            | #{record.text.substr(0, 40)}...
+                                        if (record.text.length > 30)
+                                            | #{record.text.substr(0, 340)}...
                                         else
                                             | #{record.text}
-                                    td
-                                        if (access_level >= 3)
+                                    if (access_level >= 3)
+                                        td(class='cp_gb_entry_hide')
                                             if (!record.hidden)
                                                 input(type='submit' name='hide' value='Hide')
                                             else
