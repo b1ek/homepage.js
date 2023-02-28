@@ -99,7 +99,9 @@ span.flag_btn {
     border: 1px solid #606060;
     border-radius: 2px;
     display: inline-block;
-    box-shadow: inset 0 1px 3px #e1e3e160;
+    box-shadow:
+        inset 0 -2px 3px #a0a0a080,
+        inset 0 1px 1px #f1f4f280;
     margin-left: 10px;
     visibility: hidden;
 }
