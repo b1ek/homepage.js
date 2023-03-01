@@ -19,7 +19,13 @@ async function handler(req, res) {
             {
                 current_route: '/',
                 gb_entries,
-                articles
+                articles,
+                og: {
+                    title: 'blek! Site',
+                    type: 'website',
+                    image: req.protocol + '://' + req.get('host') + '/content/transylveonia.jpg',
+                    url: req.protocol + '://' + req.get('host') + req.originalUrl
+                }
             }
         )
     );

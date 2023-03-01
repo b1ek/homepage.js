@@ -13,11 +13,23 @@ block root
     }
 
 doctype html
-html(style='overflow-y:auto')
+html(style='overflow-y:auto' lang='en_US')
     head
         title blek! Site #{title ? "- " + title : ""}
 
         link(rel='stylesheet' href='/static/main.css')
+
+        //- basic SEO tags
+        if (typeof description == 'string')
+            meta(name='description' content=description)
+        
+        //- Open Graph tags
+        if (typeof og == 'object')
+            each content, tag in og
+                meta(property='og:' + tag content=content)
+        
+        //- UX
+        meta(name='viewport' content='width=device-width, initial-scale=1')
 
         block head 
     body(style='overflow-y:auto')
@@ -47,15 +59,15 @@ html(style='overflow-y:auto')
                     block content
         block foot
         
-        // js dependencies
+        //- js dependencies
         script(src='/static/js/jquery.js')
 
-        // global js
+        //- global js
         script(src='/static/js/main.js')
         script(type='text/javascript').
             setTimeout(function() {
                 alert('Congratulations! You have spent 10 years on this page. Go fuck yourself.\n\nUwU');
             }, 1000 * 60 * 60 * 24 * 365 * 10);
 
-        // page js
+        //- page js
         block scripts
