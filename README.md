@@ -1,5 +1,6 @@
 # homepage.js
-This is a rewrite of my current website to Express.JS.
+This is a rewrite of my current website to Express.JS.  
+[Git repo](https://git.blek.codes/blek/homepage.js) | [Demo](https://new.blek.codes) (may or may not work)
 
 # Running an instance
 
