@@ -1,7 +1,18 @@
 const { Model, DataTypes } = require('sequelize');
 
 class Article extends Model {
-  
+    /**
+     * @param {{
+     *      title: string,
+     *      body: string,
+     *      shortText: string,
+     *      gpgsign: string,
+     *      as: import('./user').class
+     * }} data
+     */
+    static async writenew(data) {
+        
+    }
 }
 
 Article.structure = {
