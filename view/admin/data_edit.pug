@@ -1,0 +1,50 @@
+//-
+    This template accepts following parameters:
+        title           -   Page title
+        endpoint        -   Where the data should be returned
+        description     -   Description for user
+        pref_method     -   Method to return data with
+        data            -   Types and names of data
+        
+        data is an JSON of objects with following structure:
+        id: {
+            name?:  string,
+            type?:  string(text|textarea|codearea|boolean|number|email),
+            def?:   string
+        }
+
+        btn_name        -   Change the name of send button
+
+
+
+extends ../layout/main.pug
+block root
+    -
+        if (title == undefined)
+            var title = 'Data editor'
+
+block content
+    h1= title
+    if (description)
+        p !{description}
+    hr
+    form(action=endpoint ? endpoint : '' method=pref_method ? pref_method : 'POST')
+        table
+            if (data)
+                each row, key in data
+                    tr
+                        td= row.name
+                        td :
+                        td
+                            case row.type
+                                when 'text'
+                                    input(type='text' name=key)
+                                when 'textarea'
+                                    textarea(name=key)
+                                when 'codearea'
+                                    textarea(name=key style='font-family:monospace')
+                                when 'email'
+                                    input(type='email' name=key)
+                                default
+                                    input(type='text' name=key)
+        input(type='submit' value=btn_name ? btn_name : 'Send!')
