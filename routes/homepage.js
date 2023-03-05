@@ -13,21 +13,19 @@ async function handler(req, res) {
         limit: 5
     });
 
-    res.send(
-        await Helpers.ViewLoader.load(
-            'main.pug',
-            {
-                current_route: '/',
-                gb_entries,
-                articles,
-                og: {
-                    title: 'blek! Site',
-                    type: 'website',
-                    image: req.protocol + '://' + req.get('host') + '/content/transylveonia.jpg',
-                    url: req.protocol + '://' + req.get('host') + req.originalUrl
-                }
+    await res.template(
+        'main.pug',
+        {
+            current_route: '/',
+            gb_entries,
+            articles,
+            og: {
+                title: 'blek! Site',
+                type: 'website',
+                image: req.protocol + '://' + req.get('host') + '/content/transylveonia.jpg',
+                url: req.protocol + '://' + req.get('host') + req.originalUrl
             }
-        )
+        }
     );
     return;
 }

@@ -24,19 +24,14 @@ app.use(express.static('public'));
 
 // 404
 app.use(async (req, res, next) => {
-	try {
-		if (res.headersSent) return next();
-		const Helpers = require('./helpers');
-		res.status(404).send(await Helpers.ViewLoader.load('error.pug', {
-			error: '404 Not Found',
-			message: 'The requested page was not found.'
-		}))
-	} catch (err) { 
-		next(err);
-	}
+	if (res.headersSent) return next();
+
+	res.status(404);
+	res.template('error.pug', {
+		error: '404 Not Found',
+		message: 'The requested page was not found.'
+	});
 })
-
-
 
 // error handler
 app.use(async (err, req, res, next) => {
@@ -45,13 +40,11 @@ app.use(async (err, req, res, next) => {
         return next(err);
     }
 
-	const Helpers = require('./helpers');
-
     res.status(500);
-	res.send(await Helpers.ViewLoader.load('error.pug', {
+	res.template('error.pug', {
         error: '500 Internal Server Error',
         message: 'An unexpected error happened in the server'
-    }));
+    });
 })
 
 const server = app.listen(APP_PORT, () => {

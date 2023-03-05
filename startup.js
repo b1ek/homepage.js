@@ -18,7 +18,8 @@ require('dotenv').config({
 });
 
 // load debug
-if (process.env.APP_DEBUG) {
+if (process.env.APP_DEBUG == 'true') {
+    process.env.APP_DEBUG = true;
     process.env.DEBUG = '*/*';
 }
 
