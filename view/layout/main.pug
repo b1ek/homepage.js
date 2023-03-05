@@ -31,15 +31,32 @@ html(style='overflow-y:auto' lang='en_US')
         //- UX
         meta(name='viewport' content='width=device-width, initial-scale=1')
 
+        if (process.env.APP_DEBUG == 'true')
+            style.
+                .debug_warning {
+                    margin:0;padding:0;
+                    color:darkred;
+                    font-weight:bold;
+                    font-size:16pt;
+                    position:fixed;
+                    top:50%;
+                    left:50%;
+                    transform:translate(-50%,-50%);
+                    text-align:center;
+                    pointer-events:none;
+                    opacity:0.4;
+                    text-shadow:0 2px 1px #a07060a0
+                }
+
         block head 
     body(style='overflow-y:auto')
         if (process.env.APP_DEBUG == 'true')
-            p(style='color:darkred;font-weight:bold;font-size:16pt;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;opacity:0.25')
+            p(class='debug_warning')
                 | Warning: THE WEBSITE IS IN DEBUG MODE!
                 br
-                | If the site is running in production, please
+                | If the site is not currently running locally, please
                 br
-                | contact the maintainer and notify them of the issue.
+                | contact the maintainers and notify them of the issue.
         table(width='100%' height='100%' class='body_table')
             tr
                 td(class='side_menu')
