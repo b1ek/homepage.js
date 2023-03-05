@@ -32,4 +32,5 @@ async function handler(req, res) {
 
 module.exports = (router) => {
     router.get('/', handler);
+    router.get('/sources', (req, res) => {res.redirect('https://git.blek.codes/blek/homepage.js')});
 }
