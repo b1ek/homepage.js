@@ -1,0 +1,44 @@
+extends ../layout/main.pug
+block root
+    - var title = 'Services'
+    include ../ui/label.pug
+
+block content
+    h2 My self-hosted services
+    hr
+    table(class='border_table' style='font-size:11pt')
+        tr
+            th Name
+            th Link
+            th Description
+        tr
+            td Excalidraw
+            td
+                a(href='https://draw.blek.codes' class='web_link') draw.blek.codes
+            td
+                | A draw board. Has real-time collaborative features. 
+                a(href='https://excalidraw.com') Official site
+        tr
+            td Gitea
+            td
+                a(href='https://git.blek.codes' class='web_link') git.blek.codes
+            td
+                | My gitea instance. I store all my new work here, although it is mirrored to github.
+        tr
+            td blek! Bin
+            td
+                a(href='https://bin.blek.codes' class='web_link') bin.blek.codes
+            td
+                | A privacy-respecting, js-free pastebin alternative (inspired by 
+                a(href='https://github.com/hnhx/librebin') Librebin
+                | ) 
+                a(href='/project/blek_bin' class='web_link') Project page
+        tr
+            td Mailcow
+            td No public web gui
+            td
+                | A set of programs to run a mail service. 
+                a(href='https://mailcow.email' class='web_link') Official site
+    p
+        a(href='http://kuma.blek.codes/status/all')
+            +label('Status page', '#58ac58')

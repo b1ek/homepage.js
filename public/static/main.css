@@ -109,3 +109,18 @@ span.flag_btn {
 span.au_flag {
     background: url(/content/au_flag.jpg);
 }
+
+table.border_table, table.border_table tr td {
+    border: 1px solid #c2c4c2;
+    border-collapse: collapse;
+}
+table.border_table tr td, table.border_table tr th {
+    padding: 4px 10px;
+    border: 1px solid #c2c4c2;
+}
+table.border_table tr th {
+    border-bottom: 3px double #caccca;
+    padding: 2px 10px;
+    font-size: 90%;
+    text-align: center;
+}

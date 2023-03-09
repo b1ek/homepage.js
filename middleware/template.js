@@ -7,8 +7,12 @@ module.exports = (req, res, next) => {
 
 
     res.template = async (file, data) => {
+        
+        let t_data = {};
+        if (data) t_data = {...data};
+
         res.send(await Helpers.ViewLoader.load(file, {
-            ...data,
+            ...t_data,
             current_route: req.originalUrl,
             req,
             res,
