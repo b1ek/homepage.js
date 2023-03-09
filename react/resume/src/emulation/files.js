@@ -9,5 +9,5 @@ module.exports = {
     You can browse files with <Hi>ls</Hi>, and read them with <Hi>cat</Hi>.
     </>,
     'super_secret_password.txt':
-        <span style={{color:'orange',fontWeight:'bold'}}>uwu</span>
+        <span style={{color:'orange',fontWeight:'bold'}}>uwu</span>,
 }

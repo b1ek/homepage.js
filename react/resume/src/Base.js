@@ -15,6 +15,7 @@ export class Base extends Component {
                 commands={commands}
                 welcomeMessage={welcome}
                 promptLabel={'user@blek.codes/resume~$'}
+                style={{height:'100%'}}
             />
         )
     }
