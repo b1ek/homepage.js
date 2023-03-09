@@ -6,8 +6,9 @@ block root
 block content
     h2 My online resume
     hr
-    div(id='resume_js_app')
-        p(class='js_loading_indicator')
-            | JS is loading. Please hold on...
-            br
-            img(src='/static/ui/load.gif' style='border-radius:4px;margin-top:6px')
+    div(class='resume_app_container')
+        div(id='resume_js_app')
+            p(class='js_loading_indicator')
+                | JS is loading. Please hold on...
+                br
+                img(src='/static/ui/load.gif' style='border-radius:4px;margin-top:6px')

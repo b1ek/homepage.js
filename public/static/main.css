@@ -64,6 +64,7 @@ a:visited {
 }
 .main_contents {
     padding: 16px 12px;
+    height: 100%;
 }
 .flag_hr {
     background: linear-gradient(0,#5BCEFA 20%,#F5A9B8 20%,40%,#FFFFFF 40%,60%,#F5A9B8 60%,80%,#5BCEFA 80%);
