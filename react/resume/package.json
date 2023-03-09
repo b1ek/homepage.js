@@ -13,11 +13,14 @@
   "author": "blek",
   "license": "MIT",
   "devDependencies": {
+    "buffer": "^5.5.0",
     "parcel": "^2.8.3",
     "process": "^0.11.10"
   },
   "dependencies": {
+    "@babel/runtime": "^7.21.0",
     "react": "^18.2.0",
+    "react-console-emulator": "^5.0.2",
     "react-dom": "^18.2.0"
   }
 }
