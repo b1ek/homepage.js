@@ -8,14 +8,31 @@ Welcome to my resume!
 Type 'help' for list of commands.
 `;
 
+const inputStyle = { color: '#2e8b7e', fontWeight: 'bold' };
+
 export class Base extends Component {
     render() {
         return (
             <Terminal
                 commands={commands}
                 welcomeMessage={welcome}
-                promptLabel={'user@blek.codes/resume~$'}
+                promptLabel={
+                    <pre>
+                        user@blek.codes 
+                        <span style={{color: '#2968ac'}}> ~/resume </span>
+                        <span style={{color: '#ff5092'}}>(
+                            <span style={{color:'limegreen'}}>master</span>
+                        ) </span>
+                        $ 
+                        </pre>
+                }
+
                 style={{height:'100%'}}
+
+                promptLabelStyle={inputStyle}
+                inputTextStyle={{...inputStyle, color: '#5ba2b0', transform: 'translateY(2px)'}}
+
+                styleEchoBack={'fullInherit'}
             />
         )
     }
