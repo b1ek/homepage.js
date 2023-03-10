@@ -1,6 +1,41 @@
 import Colored from '../../helpers/color';
 
-const Title = (p) => {return <h3 style={{margin:'16px 0', color: '#526b93'}}>{...p.children}</h3>}
+const Title = (p) => {return <h3 style={{margin: '16px 0', color: '#526b93'}}>{...p.children}</h3>}
+
+const projects = {
+    web: [
+        {
+            name: 'blek! Site',
+            source: 'https://github.com/b1ek/blekSite',
+            desc: 'Second rewrite of my website in Laravel'
+        },
+        {
+            name: 'homepage.js',
+            source: 'https://git.blek.codes/blek/homepage.js',
+            desc: 'Third re write of my website in Node/Express.JS/Pug and couple other libs'
+        },
+        {
+            name: 'blek! Sail',
+            source: 'https://github.com/b1ek/sail',
+            desc: 'A production-ready server for serving Laravel projects'
+        },
+        {
+            name: 'blek! ID',
+            source: 'https://github.com/b1ek/blekID',
+            desc: 'An auth server. Not really proud of this one, as the code is very spaghetti and practically useless.'
+        },
+        {
+            name: 'blek! Bin',
+            source: 'https://git.blek.codes/blek/bin',
+            desc: 'Privacy-respecting, js-free alternative to Pastebin. Inspired by Librebin.'
+        },
+        {
+            name: 'College project',
+            source: '#',
+            desc: 'Work in progress. Planned to be a site with rental apartments for students'
+        }
+    ]
+}
 
 const skills = {
     web: (
@@ -21,26 +56,25 @@ const skills = {
             <table>
                 <tbody>
                     <tr>
-                        <td>Name</td>
-                        <td>Sources</td>
-                        <td>Description</td>
+                        <th>Name</th>
+                        <th>Sources</th>
+                        <th>Description</th>
                     </tr>
 
-                    <tr>
-                        <td>blek! Site</td>
-                        <td>
-                            <a href='https://github.com/b1ek/blekSite'>Link</a>
-                        </td>
-                        <td>Second re write of my website in Laravel</td>
-                    </tr>
-
-                    <tr>
-                        <td>homepage.js</td>
-                        <td>
-                            <a href='https://git.blek.codes/blek/homepage.js'>Link</a>
-                        </td>
-                        <td>Third re write of my website in JS/Express.JS/Pug and some other libraries</td>
-                    </tr>
+                    {
+                        Object.keys(projects.web).map((key, i) => {
+                            const proj = projects.web[key];
+                            return (
+                                <tr key={i}>
+                                    <td>{proj.name}</td>
+                                    <td>
+                                        <a href={proj.source}>Link</a>
+                                    </td>
+                                    <td>{proj.desc}</td>
+                                </tr>
+                            )
+                        })
+                    }
                 </tbody>
             </table>
         </pre>
