@@ -1,0 +1,11 @@
+FROM node:19
+
+WORKDIR /opt/code
+
+COPY . /opt/code
+
+RUN cat .gitignore | xargs rm -rf && \
+    npm i && \
+	./install
+
+CMD [ "npm", "run", "dev" ]
