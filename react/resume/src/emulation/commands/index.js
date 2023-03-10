@@ -31,10 +31,16 @@ const commands = (terminal) => {
         socials: {
             description: 'View my social links',
             fn: require('./social')
+        },
+        social: {
+            description: 'View my sociala links',
+            fn: require('./social'),
+            unlisted: true,
         }
     };
 
     commands.help = {
+        unlisted: true,
         fn: () => {
             return (
                 <pre>
@@ -43,7 +49,7 @@ const commands = (terminal) => {
                         <tbody>
                             {
                                 Object.keys(commands).map((cmd, i) => {
-                                    if (cmd == 'help') return;
+                                    if (commands[cmd].unlisted) return;
                                     return <tr key={i}>
                                         <td style={{color: 'violet'}}>{cmd}</td>
                                         <td style={{padding: '0 8px'}}> : </td>
