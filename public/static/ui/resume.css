@@ -5,7 +5,7 @@ div#resume_js_app {
     border: 1px solid #e1e1e1;
     font-family: monospace;
     box-shadow: 0 2px 4px #30303060;
-    color: #e1e1e1;
+    color: #e1e1e1 !important;
 }
 div#resume_js_app p.js_loading_indicator {
     padding: 0; margin: 0;
@@ -14,4 +14,8 @@ div#resume_js_app p.js_loading_indicator {
     transform: translate(-50%, -50%);
     width: fit-content;
     text-align: center;
+}
+
+div#resume_js_app * {
+    color: #e1e1e1;
 }
