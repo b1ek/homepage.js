@@ -2,13 +2,12 @@
   "name": "resume",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
   "source": "src/index.html",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel",
-    "build": "parcel build"
+    "build": "parcel build src/resume.js --no-source-maps"
   },
   "author": "blek",
   "license": "MIT",
@@ -19,6 +18,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.21.0",
+    "parcel-namer-without-hash": "^0.0.1",
     "react": "^18.2.0",
     "react-console-emulator": "^5.0.2",
     "react-dom": "^18.2.0"

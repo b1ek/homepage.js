@@ -4,6 +4,7 @@ import Files from './emulation/files';
 import commands from './emulation/commands';
 import Colored from './helpers/color';
 
+import './font/sourcecode.css';
 import './style.css';
 
 const welcome = <pre>
@@ -40,7 +41,7 @@ export class Base extends Component {
                 
                 errorText={'zsh: command not found: [command]'}
 
-                style={{height:'100%', fontFamily: '\'Source Code Pro\', monospace'}}
+                className='console'
 
                 promptLabelStyle={inputStyle}
                 inputTextStyle={{...inputStyle, color: '#5ba2b0', transform: 'translateY(2px)'}}

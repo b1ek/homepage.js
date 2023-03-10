@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600&display=swap'); */
 
 td {
     padding-right: 16px !important
@@ -17,4 +17,9 @@ a:hover {
 th {
     text-align: left;
     padding-right: 16px !important;
+}
+
+.console {
+    font-family: 'Source Code Pro'/*, monospace*/ !important;
+    height: 100%
 }
