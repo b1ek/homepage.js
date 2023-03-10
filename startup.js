@@ -21,6 +21,16 @@ require('dotenv').config({
 if (process.env.APP_DEBUG == 'true') {
     process.env.APP_DEBUG = true;
     process.env.DEBUG = '*/*';
+} else {
+    process.env.DEBUG = null;
+    process.env.NODE_DEBUG = null;
+    process.env.APP_DEBUG = false;
+}
+
+// build resume page
+if ((!fs.existsSync('public/static/dist/resume.js')) && (!process.env.APP_DEBUG)) {
+    console.log('Resume files do not exist, building it automatically...');
+    exec('react/resume/build.sh');
 }
 
 // load key
