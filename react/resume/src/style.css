@@ -18,8 +18,3 @@ th {
     text-align: left;
     padding-right: 16px !important;
 }
-
-.console {
-    font-family: 'Source Code Pro'/*, monospace*/ !important;
-    height: 100%
-}

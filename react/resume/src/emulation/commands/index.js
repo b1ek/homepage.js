@@ -24,7 +24,7 @@ const commands = (terminal) => {
         clear: {
             description: 'Clear the terminal.',
             fn: () => {
-                terminal.current.setState({stdout: []});
+                terminal.current.clearStdout();
             }
         },
 
@@ -51,9 +51,9 @@ const commands = (terminal) => {
                                 Object.keys(commands).map((cmd, i) => {
                                     if (commands[cmd].unlisted) return;
                                     return <tr key={i}>
-                                        <td style={{color: 'violet'}}>{cmd}</td>
+                                        <td style={{color: 'aquamarine'}}>{cmd}</td>
                                         <td style={{padding: '0 8px'}}> : </td>
-                                        <td>{commands[cmd].description}</td>
+                                        <td style={{color: 'white'}}>{commands[cmd].description}</td>
                                     </tr>
                                 })
                             }

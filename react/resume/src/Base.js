@@ -48,8 +48,11 @@ export class Base extends Component {
 
                 styleEchoBack={'fullInherit'}
                 noDefaults
-                noAutoScroll
             />
         )
+    }
+
+    componentDidMount() {
+        this.terminal.current.focusTerminal();
     }
 }
