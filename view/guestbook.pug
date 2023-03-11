@@ -93,5 +93,8 @@ block content
                                 a(href='/guestbook/del/' + entry.id class='gb_record_del_btn' title='you can delete your own messages') delete
                     td(width='80%' class='gb_entry_text')
                         p(class='gb_entry_text_title') Message:
-                        pre(class='gb_entry_message_text').
-                            #{entry.text}
+                        pre(class='gb_entry_message_text')
+                            if (entry.ip.startsWith('10.8.0.') || entry.ip.startsWith('::ffff:10.0.8.'))
+                                | !{entry.text}
+                            else
+                                | #{entry.text}
