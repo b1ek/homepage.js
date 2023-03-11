@@ -4,7 +4,7 @@ WORKDIR /opt/code
 
 COPY . /opt/code
 
-RUN cat .gitignore | xargs rm -rf && \
+RUN rm -rf node_modules package-lock.json yarn.lock && \
     npm i && \
 	./install
 
