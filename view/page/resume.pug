@@ -21,7 +21,7 @@ block content
 
 block scripts
 
-    if (process.env.APP_DEBUG)
+    if (process.env.APP_DEBUG != 'true')
         script(src='/static/dist/resume.js' async defer='')
     else
         script(src='http://localhost:1234/resume.js' async defer='')
