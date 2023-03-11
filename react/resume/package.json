@@ -12,13 +12,14 @@
   "author": "blek",
   "license": "MIT",
   "devDependencies": {
+    "@parcel/reporter-bundle-analyzer": "^2.8.3",
     "buffer": "^5.5.0",
     "parcel": "^2.8.3",
-    "process": "^0.11.10"
+    "process": "^0.11.10",
+    "parcel-namer-without-hash": "^0.0.1"
   },
   "dependencies": {
     "@babel/runtime": "^7.21.0",
-    "parcel-namer-without-hash": "^0.0.1",
     "react": "^18.2.0",
     "react-console-emulator": "^5.0.2",
     "react-dom": "^18.2.0"
