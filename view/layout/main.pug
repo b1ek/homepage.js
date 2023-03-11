@@ -91,6 +91,10 @@ html(style='overflow-y:auto' lang='en_US')
         //- global js
         script(src='/static/js/main.js')
         script(type='text/javascript').
+            var data = {
+                ip: '#{req.ip}'
+            }
+
             setTimeout(function() {
                 alert('Congratulations! You have spent 10 years on this page. Go fuck yourself.\n\nUwU');
             }, 1000 * 60 * 60 * 24 * 365 * 10);

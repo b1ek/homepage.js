@@ -49,6 +49,8 @@ export class Base extends Component {
                         </tbody>
                     </table>
                     */
+                   data.ip ?
+                   (data.ip + '@blek.codes $') :
                    '$ '
                 }
                 

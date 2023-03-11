@@ -6,6 +6,7 @@ async function services(req, res) {
 
 async function resume(req, res) {
     res.template('page/resume.pug');
+    console.log(process.env.APP_DEBUG);
 }
 
 module.exports = (router) => {
