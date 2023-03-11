@@ -4,6 +4,8 @@ This is a rewrite of my current website to Express.JS.
 
 # Running an instance
 
+First, [generate the app key](#generate-the-key).
+
 ### Debug
 ```bash
 cp .env.example .env
@@ -26,3 +28,7 @@ Also dont forget to build the [resume app](#build-the-resume)
 ## Build the resume
 cd to `react/resume` and run `build.sh`.  
 If you are running in debug mode, run `yarn/npm start`
+
+## Generate the key
+Install node modules in following directories: `.`, `./scripts`  
+Then, cd to root and run `node scripts/generate_key.js`
