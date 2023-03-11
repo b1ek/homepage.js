@@ -23,7 +23,7 @@ async function handler(req, res, next) {
         if (!data) throw new Error('Failed to get guestbook entries');
 
 
-        res.send(await Helpers.ViewLoader.load('guestbook.pug', {
+        res.template('guestbook.pug', {
             current_route: req.originalUrl,
             ip: req.ip,
             data,
@@ -31,7 +31,7 @@ async function handler(req, res, next) {
             name: req.session.gb_name,
             email: req.session.gb_email,
             hidemail: req.session.gb_hidemail
-        }));
+        });
         return;
     } catch (err) {
         next(err);
@@ -104,11 +104,11 @@ async function submit(req, res, next) {
         time: Math.floor(Date.now() / 1000)
     });
     if (!data) {
-        res.send(await Helpers.ViewLoader.load('guestbook.pug', {
+        res.template('guestbook.pug', {
             current_route: req.originalUrl,
             ip: req.ip,
             errors: 'Could not create a new record'
-        }));
+        });
     }
     
     res.redirect('/guestbook#gb_entry_' + data.id);

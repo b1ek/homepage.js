@@ -9,7 +9,14 @@ async function resume(req, res) {
     console.log(process.env.APP_DEBUG);
 }
 
+async function about(req, res) {
+    res.template('about.pug', {
+        current_route: req.originalUrl
+    });
+}
+
 module.exports = (router) => {
     router.get('/services', handler(services))
     router.get('/resume', handler(resume))
+    router.get('/about', handler(about));
 }

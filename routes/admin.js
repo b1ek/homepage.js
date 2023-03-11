@@ -41,11 +41,11 @@ async function panel(req, res) {
 
     const articles = await db.Article.findAll({where: {hidden: true}});
 
-    res.send(await Helpers.ViewLoader.load('admin/panel.pug', {
+    res.template('admin/panel.pug', {
         current_route: req.originalUrl,
         gb_records,
         access_level: user.accessLevel
-    }));
+    });
     return;
 }
 
@@ -74,7 +74,7 @@ async function gb_api(req, res) {
 }
 
 async function article_new(req, res) {
-    res.send(await Helpers.ViewLoader.load('articles/new.pug'))
+    res.template('articles/new.pug')
 }
 
 module.exports = (router) => {

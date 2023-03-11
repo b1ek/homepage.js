@@ -7,14 +7,14 @@ async function articles(req, res) {
 
     const articles = await Sequelize.Article.findAll();
 
-    res.send(await Helpers.ViewLoader.load('articles/articles.pug', {
+    res.template('articles/articles.pug', {
         current_route: res.originalUrl,
         articles
-    }));
+    });
 }
 
 async function new_article(req, res) {
-    res.send(await Helpers.ViewLoader.load('admin/data_edit.pug', {
+    res.template('admin/data_edit.pug', {
         current_route: req.originalUrl,
         data: {
             'title': {
@@ -39,7 +39,7 @@ async function new_article(req, res) {
         title: 'New article',
         endpoint: '/articles/new',
         pref_method: 'POST'
-    }));
+    });
 }
 
 async function new_article_post(req, res) {
