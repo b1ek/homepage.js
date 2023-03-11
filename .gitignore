@@ -13,3 +13,8 @@ yarn.lock
 # docker
 docker-compose.yml
 Dockerfile
+
+# temporary files
+*.log
+*.tmp
+*.compiled
