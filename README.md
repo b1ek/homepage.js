@@ -20,3 +20,9 @@ echo "APP_DEBUG=false" >> .env # Or edit the file yourself
 sudo ./install
 docker-compose up -d
 ```
+
+Also dont forget to build the [resume app](#build-the-resume)
+
+## Build the resume
+cd to `react/resume` and run `build.sh`.  
+If you are running in debug mode, run `yarn/npm start`
