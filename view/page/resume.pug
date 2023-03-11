@@ -1,9 +1,11 @@
 extends ../layout/main.pug
 block root
     - var title = 'Resume'
-    link(rel='stylesheet' href='/static/ui/resume.css')
+    if (process.env.APP_DEBUG != 'true')
+        script(src='/static/dist/resume.js' async defer='')
     if (process.env.APP_DEBUG == 'true')
-        script(src='http://localhost:1234/resume.js' defer='')
+        script(src='http://localhost:1234/resume.js' async defer='')
+    link(rel='stylesheet' href='/static/ui/resume.css')
 
 block content
     h2 My online resume
@@ -20,5 +22,3 @@ block content
                         | It seems that you have JS disabled.
                         br
                         | Please, enable it in order to run the app.
-        if (process.env.APP_DEBUG != 'true')
-            script(src='/static/dist/resume.js')

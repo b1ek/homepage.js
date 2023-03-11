@@ -1,11 +1,17 @@
 div#resume_js_app {
-    background: #303030;
-    width:640px;
-    height:480px;
+    background: #212121;
+    width:800px;
+    height:600px;
     border: 1px solid #e1e1e1;
+    border-radius: 6px;
     font-family: monospace;
-    box-shadow: 0 2px 4px #30303060;
+    box-shadow: 0 2px 1px #303030A0;
     color: #e1e1e1 !important;
+    padding: 2px;
+    transition: 150ms ease;
+}
+div#resume_js_app:hover {
+    box-shadow: 0 2px 3px #303030;
 }
 div#resume_js_app p.js_loading_indicator {
     padding: 0; margin: 0;
@@ -18,4 +24,8 @@ div#resume_js_app p.js_loading_indicator {
 
 div#resume_js_app * {
     color: #e1e1e1;
+}
+div#resume_js_app table * {
+    border:0;
+    text-align: left;
 }

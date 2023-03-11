@@ -5,7 +5,6 @@ import commands from './emulation/commands';
 import Colored from './helpers/color';
 
 import './font/sourcecode.css';
-import './style.css';
 
 const welcome = <pre>
 Welcome to my resume!<br/>
