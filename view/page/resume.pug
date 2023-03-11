@@ -1,10 +1,6 @@
 extends ../layout/main.pug
 block root
     - var title = 'Resume'
-    if (process.env.APP_DEBUG != 'true')
-        script(src='/static/dist/resume.js' async defer='')
-    if (process.env.APP_DEBUG == 'true')
-        script(src='http://localhost:1234/resume.js' async defer='')
     link(rel='stylesheet' href='/static/ui/resume.css')
 
 block content
@@ -22,3 +18,10 @@ block content
                         | It seems that you have JS disabled.
                         br
                         | Please, enable it in order to run the app.
+
+block scripts
+
+    if (process.env.APP_DEBUG)
+        script(src='/static/dist/resume.js' async defer='')
+    else
+        script(src='http://localhost:1234/resume.js' async defer='')

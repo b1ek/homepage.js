@@ -10,8 +10,15 @@ const commands = (terminal) => {
         },
         ls: {
             description: 'Show files in current directory',
-            fn: ()=>{
-                return <pre style={{color: '#2e8b7e', fontWeight: 'bold'}}>
+            fn: () => {
+                return '\'ls\' is not recognized as an internal or external command, operable program or batch file.';
+            },
+            unlisted: true
+        },
+        dir: {
+            description: 'Show files in current directory',
+            fn: () => {
+                return <pre style={{color: '#2e8b7e', fontWeight: 'bold', margin: '0'}}>
                     {Object.keys(Files).join('   ')}
                 </pre>;
             }

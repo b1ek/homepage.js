@@ -27,15 +27,29 @@ export class Base extends Component {
                 commands={commands(this.terminal)}
                 welcomeMessage={welcome}
                 promptLabel={
-                    /*<pre>
-                        user@blek.codes 
-                        <span style={{color: '#2968ac'}}> ~/resume </span>
-                        <span style={{color: '#ff5092'}}>(
-                            <span style={{color:'limegreen'}}>master</span>
-                        ) </span>
-                        $ 
-                    </pre>*/
-                        '$ '
+                    /*
+                    <table className='prompt_table'>
+                        <tbody>
+                            <tr>
+                                <td style={inputStyle}>user@blek.codes</td>
+                                <td className='prompt_spacing'></td>
+                                <td style={{color: '#2968ac'}}> ~/resume </td>
+                                <td className='prompt_spacing'></td>
+
+                                <td style={{color: '#ff5092'}}>(</td>
+                                <td className='prompt_spacing'></td>
+
+                                <td style={{color:'limegreen'}}>master</td>
+                                <td className='prompt_spacing'></td>
+                                <td style={{color: '#ff5092'}}>)</td>
+                                <td className='prompt_spacing'></td>
+
+                                <td>$</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    */
+                   '$ '
                 }
                 
                 errorText={'zsh: command not found: [command]'}
@@ -43,7 +57,7 @@ export class Base extends Component {
                 className='console'
 
                 promptLabelStyle={inputStyle}
-                inputTextStyle={{...inputStyle, color: '#5ba2b0', transform: 'translateY(2px)'}}
+                inputTextStyle={{...inputStyle, color: '#5ba2b0', transform: 'translate(2px, 2px)'}}
 
                 styleEchoBack={'fullInherit'}
                 noDefaults
