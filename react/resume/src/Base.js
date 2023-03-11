@@ -13,7 +13,7 @@ Type
 for a list of commands.
 </pre>;
 
-const inputStyle = { color: '#2e8b7e', fontWeight: 'bold' };
+const inputStyle = { color: '#4d6663', fontWeight: 'bold', minWidth: 'fit-content' };
 
 export class Base extends Component {
     constructor(props) {
@@ -50,7 +50,7 @@ export class Base extends Component {
                     </table>
                     */
                    data.ip ?
-                   (data.ip + '@blek.codes $') :
+                   (data.ip + '@blek.codes ~/resume $ ') :
                    '$ '
                 }
                 
@@ -59,7 +59,7 @@ export class Base extends Component {
                 className='console'
 
                 promptLabelStyle={inputStyle}
-                inputTextStyle={{...inputStyle, color: '#5ba2b0', transform: 'translate(2px, 2px)'}}
+                inputTextStyle={{...inputStyle, transform: 'translate(2px, 2px)'}}
 
                 styleEchoBack={'fullInherit'}
                 noDefaults
