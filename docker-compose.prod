@@ -1,0 +1,33 @@
+version: '3'
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - './:/opt/code'
+    ports:
+      - '${APP_PORT}:${APP_PORT}'
+    env_file: ./.env
+    environment:
+      APP_PORT: '${APP_PORT}'
+    networks:
+      - homepage
+  redis:
+    image: redis:alpine
+    networks:
+      - homepage
+  db:
+    image: postgres:alpine
+    environment:
+      POSTGRES_PASSWORD: '${DB_PASSWORD}'
+      POSTGRES_USER: '${DB_USERNAME}'
+      POSTGRES_DB: '${DB_DATABASE}'
+    volumes:
+      - './data/db:/var/lib/postgresql'
+    networks:
+      - homepage
+
+networks:
+  homepage:
+    driver: bridge
