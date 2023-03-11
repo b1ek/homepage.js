@@ -112,6 +112,7 @@ module.exports = (args) => {
         <Colored color='#cc6a6a'>C/C++/Rust native dev</Colored><br/>
         [##   ] 40%<br/>
         I do this... sometimes<br/>
+        More: <Colored color='seagreen' weight='normal'>skills nt</Colored><br/>
         <br/>
 
         <Colored color='#7dadd7'>Linux skills</Colored><br/>
