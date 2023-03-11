@@ -83,7 +83,14 @@ const skills = {
         <pre>
             <Title>My native dev experience</Title>
             <p>
-                It isn't much
+                It isn't much.<br/>
+                I have only one project that is made with Qt/C++: 
+                <a href='https://github.com/b1ek/CuteSchedule'>CuteSchedule</a> 
+                (Cute stands fot Qt).<br/>
+                <br/>
+                But I do have a lot of experience with C and C++, as I like to write
+                a lot of programs in those languages in my free time. An example of these programs: 
+                <a href='https://github.com/b1ek/f2bin'>f2bin</a>.
             </p>
         </pre>
     )
