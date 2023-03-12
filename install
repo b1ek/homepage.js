@@ -1,24 +1,28 @@
 #!/bin/bash
 
-PACKAGES="gulp-cli gulper gulp mocha sequelize-cli"
+PACKAGES="sequelize-cli"
+DEV_PGKS="gulp-cli gulper gulp mocha"
 
 if [[ $APP_DEBUG == 'true' ]]; then
-    npm i
+    yarn install
     
     cd scripts
-    npm i
+    yarn install
     cd ..
 else
-    npm i --prod
+    yarn install --prod
 
     cd scripts
-    npm i --prod
+    yarn install --prod
     cd ..
+
 fi
 
 echo -e "Installing \033[32m$PACKAGES\033[0m"
-if [[ APP_DEBUG == 'true' ]]; then
+if [[ APP_DEBUG == 'true' ]]; thenS
+    echo -e "Installing \033[32m$DEV_PGKS\033[0m"
     npm i -g $PACKAGES
+    npm i -g $DEV_PGKS
 else
     npm i -g --prod $PACKAGES
 fi
