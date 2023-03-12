@@ -15,6 +15,8 @@ const bodyparser = require('body-parser');
 
 const { APP_PORT } = process.env;
 
+app.set('trust proxy', process.env.TRUST_PROXY);
+
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(require('./middleware'));
