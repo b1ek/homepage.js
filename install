@@ -19,7 +19,7 @@ else
 fi
 
 echo -e "Installing \033[32m$PACKAGES\033[0m"
-if [[ APP_DEBUG == 'true' ]]; thenS
+if [[ APP_DEBUG == 'true' ]]; then
     echo -e "Installing \033[32m$DEV_PGKS\033[0m"
     npm i -g $PACKAGES
     npm i -g $DEV_PGKS
