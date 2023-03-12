@@ -1,7 +1,7 @@
-const Helpers = require('../helpers');
 const Sequelize = require('../models');
+const handler = require('express-async-handler');
 
-async function handler(req, res) {
+async function index(req, res) {
 
     let gb_entries = await Sequelize.Guestbook.findAll({
         limit: 5,
@@ -31,6 +31,6 @@ async function handler(req, res) {
 }
 
 module.exports = (router) => {
-    router.get('/', handler);
+    router.get('/', handler(index));
     router.get('/sources', (req, res) => {res.redirect('https://git.blek.codes/blek/homepage.js')});
 }

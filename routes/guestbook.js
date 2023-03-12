@@ -1,13 +1,12 @@
-const Helpers = require('../helpers');
 const Sequelize = require('../models');
-const html_escape = require('html-escaper');
 const xml = require('xml');
+const handler = require('express-async-handler');
 
 const send_error = async (res, error) => {
     return res.redirect('/guestbook?error=' + encodeURIComponent(error));
 };
 
-async function handler(req, res, next) {
+async function guestbook(req, res, next) {
     try {
 
         const errors = req.query.error;
@@ -179,8 +178,8 @@ async function rss(req, res) {
 }
 
 module.exports = (router) => {
-    router.get('/guestbook', handler);
-    router.post('/guestbook/submit', submit);
-    router.get('/guestbook/del/:id', del);
-    router.get('/guestbook.rss', rss);
+    router.get('/guestbook', handler(guestbook));
+    router.post('/guestbook/submit', handler(submit));
+    router.get('/guestbook/del/:id', handler(del));
+    router.get('/guestbook.rss', handler(rss));
 }

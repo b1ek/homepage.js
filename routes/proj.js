@@ -1,6 +1,6 @@
-const Helpers = require('../helpers');
+const handler = require('express-async-handler');
 
-async function handler(req, res) {
+async function project(req, res) {
     res.template(
         'project.pug',
         {
@@ -34,6 +34,6 @@ async function viewer(req, res) {
 }
 
 module.exports = (router) => {
-    router.get('/project', handler);
-    router.get('/project/:id', viewer);
+    router.get('/project', handler(project));
+    router.get('/project/:id', handler(viewer));
 }
