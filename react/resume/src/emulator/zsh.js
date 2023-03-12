@@ -25,14 +25,14 @@ function pr_char(char) {
 function exec_cmd() {
     let c = cmd;
     reset_cmd();
-    history.push(c);
+    history.unshift(c);
     terminal.writeln('zsh: command not found: ' + c);
     print_prompt();
+    history_pos = 0;
 }
 
 function print_prompt() {
     terminal.write(prompt);
-    history_pos = 0;
 }
 
 function reprint_prompt() {
