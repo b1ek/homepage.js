@@ -8,9 +8,10 @@ const fs = require('../fs');
  */
 module.exports = (argv, terminal) => {
     if (argv.indexOf('--help') != -1) {
-        terminal.writeln('Usage: cat [file] [-n]');
+        terminal.writeln(`Usage: ${argv[0]} [files] [-n]`);
         terminal.writeln('  -n --number: show lines numbers');
         terminal.writeln('     --help:   show this help');
+        terminal.writeln('Reads file into stdout');
         return;
     }
     const numbers = (argv.indexOf('-n') != -1) || (argv.indexOf('--number') != -1);
