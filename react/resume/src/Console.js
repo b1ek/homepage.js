@@ -22,7 +22,7 @@ export class Console extends React.Component {
     }
 
     componentDidMount() {
-        require('./emulator')(this.terminal.current.terminal);
+        require('./emulator')(this.terminal.current);
         this.terminal.current.terminal.focus(); 
     }
 }

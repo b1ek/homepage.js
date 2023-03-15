@@ -1,0 +1,52 @@
+div#resume_js_app {
+  width: 800px;
+  height: 600px;
+  background: #212121;
+  border: 1px solid #e1e1e1;
+  border-radius: 6px;
+  padding: 2px;
+  font-family: monospace;
+  transition: all .15s;
+  box-shadow: 0 2px 1px #303030a0;
+  color: #e1e1e1 !important;
+}
+
+div#resume_js_app:hover {
+  box-shadow: 0 2px 3px #303030;
+}
+
+div#resume_js_app p.js_loading_indicator {
+  width: -moz-fit-content;
+  width: fit-content;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+div#resume_js_app * {
+  color: #e1e1e1;
+  font-family: Source Code Pro, monospace !important;
+}
+
+div#resume_js_app a, div#resume_js_app a:visited {
+  text-shadow: 0 0 #24557e30;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all .15s;
+  color: #24557e !important;
+}
+
+div#resume_js_app a:hover {
+  text-shadow: 0 0 4px #24557e30;
+}
+
+div#resume_js_app table * {
+  text-align: left;
+  border: 0;
+}
+
+/*# sourceMappingURL=resume.css.map */

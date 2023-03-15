@@ -1,6 +1,5 @@
-import { createRoot } from "react-dom/client";
-import { Console } from "./Console";
+import { Console } from './Console';
+import ReactDOM from 'react-dom/client';
 
-const container = document.getElementById("resume_js_app");
-const root = createRoot(container)
-root.render(<Console />);
+const root = ReactDOM.createRoot(document.getElementById('resume_js_app'));
+root.render(<Console />)
