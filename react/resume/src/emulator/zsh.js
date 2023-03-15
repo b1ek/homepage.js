@@ -18,6 +18,7 @@ let dom;
 
 const prompt = '\033[1;32muser@blek.codes \033[36m~ $ \033[0m';
 let cmd = '';
+let lastcmd = '';
 
 function text_prompt() {
     return prompt.replace(/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, '');
@@ -48,28 +49,30 @@ function exec_file(f) {
 
 function exec_cmd() {
     let c = cmd;
+    const command = c.split(' ')[0];
     reset_cmd(c);
+    lastcmd = c;
 
-    if (c == '') {
+    if (command == '') {
         print_prompt();
         return;
     }
 
     // if path
-    if (c.match(/^((\.|\.\.)\/|\/).+$/gm)) {
-        exec_file(c);
+    if (command.match(/^((\.|\.\.)\/|\/).+$/gm)) {
+        exec_file(command);
         terminal.writeln('');
         print_prompt();
         return;
     }
 
-    if (cmds[c] != undefined) {
-        cmds[c](c.split(' '), terminal);
+    if (cmds[command] != undefined) {
+        cmds[command](c.split(' '), terminal);
         print_prompt();
         return;
     }
     
-    terminal.writeln('zsh: command not found: ' + c);
+    terminal.writeln('zsh: command not found: ' + command);
     print_prompt();
 }
 
@@ -108,6 +111,13 @@ function control_char(id, dom) {
             exec_cmd();
             break;
         
+        case 38:
+            if (lastcmd == '') break;
+            cmd = lastcmd;
+            reprint_prompt();
+            terminal.write(lastcmd);
+            break;
+        
         // Ctrl+c
         case 67:
             if (dom.ctrlKey) {
@@ -135,7 +145,7 @@ function control_char(id, dom) {
 function key(e) {
     /** @type {KeyboardEvent} */
     const dom = e.domEvent;
-    if (dom.key.length == 1 && !(dom.ctrlKey || dom.altKey || dom.shiftKey)) {
+    if (dom.key.length == 1 && !(dom.ctrlKey || dom.altKey)) {
         pr_char(e.domEvent.key);
     } else {
         control_char(e.domEvent.keyCode, dom)
