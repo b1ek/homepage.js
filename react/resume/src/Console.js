@@ -15,7 +15,8 @@ export class Console extends React.Component {
                             theme: {
                                 background: '#212121',
                                 brightGreen: '#15a179'
-                            }
+                            },
+                            convertEol: true
                         }}
                     />
                 </div>;

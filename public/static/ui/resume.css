@@ -7,7 +7,7 @@ div#resume_js_app {
     font-family: monospace;
     box-shadow: 0 2px 1px #303030A0;
     color: #e1e1e1 !important;
-    padding: 2px;
+    padding: 8px 2px;
     transition: 150ms ease;
 }
 div#resume_js_app:hover {
