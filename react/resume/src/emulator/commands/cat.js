@@ -9,9 +9,9 @@ const fs = require('../fs');
 module.exports = (argv, terminal) => {
     if (argv.indexOf('--help') != -1) {
         terminal.writeln(`Usage: ${argv[0]} [files] [-n]`);
-        terminal.writeln('  -n --number: show lines numbers');
-        terminal.writeln('     --help:   show this help');
-        terminal.writeln('Reads file into stdout');
+        terminal.writeln('  -n --number  show lines numbers');
+        terminal.writeln('     --help    show this help');
+        terminal.writeln('Read files into stdout');
         return;
     }
     const numbers = (argv.indexOf('-n') != -1) || (argv.indexOf('--number') != -1);
@@ -20,11 +20,16 @@ module.exports = (argv, terminal) => {
     files.shift();
     files.forEach(file => {
         const lines = fs.readFileSync(file).toString().split('\n');
-        let i = 1;
-        lines.forEach(line => {
-            if (numbers) terminal.write('\033[35m' + i + ' |\033[0m ');
-            terminal.writeln(line);
-            i++;
-        })
+        
+        if (numbers) {
+            lines.forEach((line, i) => {
+                terminal.write('\033[35m' + i + ' |\033[0m ');
+            })
+        } else {
+            terminal.write(file);
+            /// print % if no newline at eof
+            if (lines[lines.length - 1] != '') 
+                terminal.write('\033[30;47m%\033[0m\n');
+        }
     })
 }
