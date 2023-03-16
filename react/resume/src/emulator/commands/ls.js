@@ -26,7 +26,7 @@ module.exports = (argv, terminal) => {
 
     // remove .* files if -a not specified
     if (!all)
-        directories = directories.filter(x => x.startsWith('.'));
+        directories = directories.filter(x => !x.startsWith('.'));
     
     // remove arguments
     directories = directories.filter(x => !x.startsWith('-'));
@@ -37,24 +37,31 @@ module.exports = (argv, terminal) => {
     directories = [...new Set(directories)];
 
     directories.forEach((dir, i) => {
+
+        if (!fs.lstatSync(dir).isDirectory()) {
+            terminal.write(dir);
+            return;
+        }
         
         if (directories.length != 1) {
             terminal.writeln(dir + ':');
             terminal.writeln('');
         }
 
+        if (!fs.existsSync(dir)) {
+            terminal.writeln(`${argv[0]}: cannot access '${dir}': No such file or directory`);
+            return;
+        }
         let files = fs.readdirSync(dir);
         files.forEach((file, i) => {
-            
-            if (!fs.accessSync(file, fs.constants.X_OK))
-                terminal.write('\033[1;32m');
-            if (fs.accessSync(file, fs.constants.R_OK))
-                terminal.write('\033[35m');
 
-            terminal.write(file + '\033[0m  ');
+            if (!long_format)
+                terminal.write(file + '\033[0m  ');
+            else
+                terminal.writeln('drwx-xr-x  1 nobody nobody 4.0K Jan 1 13 01:00 ' + file);
             if ((i+1) % 5 == 0)
                 terminal.writeln('');
         });
-        terminal.writeln('');
     })
+    terminal.writeln('');
 }

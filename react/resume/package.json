@@ -23,6 +23,7 @@
     "memfs": "^3.4.13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "unionfs": "^4.4.0",
     "xterm": "^5.1.0",
     "xterm-for-react": "^1.0.4",
     "xterm-js-shell": "^1.1.3"
