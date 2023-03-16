@@ -69,6 +69,9 @@ function exec_cmd() {
 
     if (cmds[command] != undefined) {
         cmds[command](c.split(' '), terminal);
+        if (terminal.buffer.active.cursorX != 0) {
+            terminal.write('\033[30;47m%\033[0m\n');
+        }
         print_prompt();
         return;
     }

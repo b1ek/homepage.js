@@ -26,10 +26,7 @@ module.exports = (argv, terminal) => {
                 terminal.write('\033[35m' + i + ' |\033[0m ');
             })
         } else {
-            terminal.write(file);
-            /// print % if no newline at eof
-            if (lines[lines.length - 1] != '') 
-                terminal.write('\033[30;47m%\033[0m\n');
+            terminal.write(lines.join('\n'));
         }
     })
 }
