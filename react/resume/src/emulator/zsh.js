@@ -7,7 +7,7 @@ global.fs = fs;
 const cmds = require('./commands');
 
 /**
- * @type {Terminal}
+ * @type { Terminal }
  */
 let terminal;
 
@@ -47,7 +47,7 @@ function exec_file(f) {
     return;
 }
 
-function exec_cmd() {
+async function exec_cmd() {
     let c = cmd;
     const command = c.split(' ')[0];
     reset_cmd(c);
@@ -68,8 +68,13 @@ function exec_cmd() {
     }
 
     if (cmds[command] != undefined) {
-        cmds[command](c.split(' '), terminal);
-        if (terminal.buffer.active.cursorX != 0) {
+        const startY = terminal.buffer.normal.cursorY
+
+        await cmds[command](c.split(' '), terminal);
+
+        await (new Promise(resolve => setTimeout(resolve, 10)));
+
+        if (terminal.buffer.active.cursorX != 0 && startY != terminal.buffer.active.cursorY) {
             terminal.write('\033[30;47m%\033[0m\n');
         }
         print_prompt();
@@ -137,6 +142,11 @@ function control_char(id, dom) {
 
 
         default:
+            if (dom.ctrlKey && (dom.key.length == 1)) {
+                terminal.write('^' + dom.key.toUpperCase());
+                break;
+            }
+
             terminal.write('<');
             if (dom.ctrlKey)    terminal.write('C');
             if (dom.altKey)     terminal.write('A');
