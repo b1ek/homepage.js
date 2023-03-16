@@ -18,7 +18,7 @@ let dom;
 
 const prompt = '\033[1;32muser@blek.codes \033[36m~ $ \033[0m';
 let cmd = '';
-let lastcmd = '';
+let lastcmd = window.sessionStorage.getItem('last_cmd') || '';
 
 function text_prompt() {
     return prompt.replace(/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, '');
@@ -52,6 +52,7 @@ function exec_cmd() {
     const command = c.split(' ')[0];
     reset_cmd(c);
     lastcmd = c;
+    window.sessionStorage.setItem('last_cmd', c);
 
     if (command == '') {
         print_prompt();
