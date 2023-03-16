@@ -19,6 +19,10 @@ module.exports = (argv, terminal) => {
     let files = argv.filter(x => { return !x.startsWith('-') });
     files.shift();
     files.forEach(file => {
+        if (!fs.existsSync(file)) {
+            terminal.writeln(`${argv[0]}: ${file}: no such file or directory`);
+            return;
+        }
         const lines = fs.readFileSync(file).toString().split('\n');
         
         if (numbers) {
