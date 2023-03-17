@@ -24,7 +24,14 @@ function text_prompt() {
     return prompt.replace(/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, '');
 }
 
-function pr_char(char) {
+/**
+ * 
+ * @param { string } char 
+ * @param { KeyboardEvent } dom 
+ */
+function pr_char(char, dom) {
+    if (dom.key.length != 1) return;
+
     cmd += char;
     terminal.write(char);
 }
@@ -99,20 +106,41 @@ function reset_cmd() {
     terminal.writeln('');
 }
 
+function cbackspace() {
+    let exploded = cmd.split(' ');
+    if (exploded.length >= 1) {
+        reprint_prompt();
+        cmd = '';
+        return;
+    }
+    exploded.pop();
+    
+    cmd = exploded.join(' ') + ' ';
+    reprint_prompt();
+    terminal.write(cmd);
+    return;
+
+}
+
+function backspace(isCtrl) {
+    if (terminal.buffer.active.cursorX <= text_prompt().length) return;
+
+    if (isCtrl) {
+        return cbackspace();
+    }
+
+    terminal.write('\b \b');
+    cmd = cmd.substring(0, cmd.length - 1);
+}
+
 /** @param { KeyboardEvent } dom */
 function control_char(id, dom) {
-    
-    const backspace = () => {
-        if (terminal.buffer.active.cursorX <= text_prompt().length) return;
-        terminal.write('\b \b');
-        cmd = cmd.substring(0, cmd.length - 1);
-    }
     
     switch (id) {
 
         // backspace
         case 8:
-            backspace();
+            backspace(dom.ctrlKey);
             break;
 
         // enter
@@ -135,11 +163,9 @@ function control_char(id, dom) {
                 print_prompt();
                 break;
             }
-        
-        case 37:
-            backspace();
-            break;
 
+        case 86:
+            if (dom.altKey) break;
 
         default:
             if (dom.ctrlKey && (dom.key.length == 1)) {
@@ -160,16 +186,20 @@ function key(e) {
     /** @type {KeyboardEvent} */
     const dom = e.domEvent;
     if (dom.key.length == 1 && !(dom.ctrlKey || dom.altKey)) {
-        pr_char(e.domEvent.key);
+        pr_char(e.domEvent.key, dom);
     } else {
         control_char(e.domEvent.keyCode, dom)
     }
 }
 
-module.exports = (t, d) => {
+function register(t, d) {
     terminal = t;
     dom = d;
 
     terminal.onKey(key);
     terminal.write(prompt);
 }
+
+register.pr_char = pr_char;
+
+module.exports = register;
