@@ -26,8 +26,7 @@ Usage: ${argv[0]} [URL] [-O out.file] [-V] [-Q] [-s]
             terminal.writeln(`${argv[0]}: missing output file`);
             return;
         }
-        filepath = argv[argv.indexOf('-O') + 1]
-        return;
+        filepath = argv[argv.indexOf('-O') + 1];
     }
 
     function progress(p) {
@@ -35,11 +34,15 @@ Usage: ${argv[0]} [URL] [-O out.file] [-V] [-Q] [-s]
         
         if (total == 0)
             total = '?'
-        terminal.write(`\rDownloading... ${p.loaded}/${total}`);
+        // terminal.write(`\rDownloading... ${p.loaded}/${total}`);
     }
 
     function write(file) {
-
+        if (filepath == '-') {
+            terminal.write(file);
+        } else {
+            fs.writeFileSync(filepath, file);
+        }
     }
 
     let file;
@@ -50,8 +53,7 @@ Usage: ${argv[0]} [URL] [-O out.file] [-V] [-Q] [-s]
     req.onprogress = progress;
     req.onload = (e) => {
         if (e.type == 'load') {
-            let enc = new TextDecoder("utf-8");
-            terminal.write(enc.decode(req.response));
+            write(e.response);
         }
     };
     req.send();
