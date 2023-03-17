@@ -30,5 +30,4 @@ cd to `react/resume` and run `build.sh`.
 If you are running in debug mode, run `yarn/npm start`
 
 ## Generate the key
-Install node modules in following directories: `.`, `./scripts`  
-Then, cd to root and run `node scripts/generate_key.js`
+Cd to root of project and run `scripts/generate_key.py`
