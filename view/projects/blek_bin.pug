@@ -2,12 +2,14 @@ extends ../layout/project.pug
 block root
     - var title = 'blek! Bin'
     include ../lib/since.pug
-    include ../ui/planned_label.pug
+    include ../ui/label.pug
 
 block append content
     h2
         | blek! Bin 
-        +planned_label()
+
+        a(href='https://bin.blek.codes')
+            +label('Official instance (link)', '#90c137')
     p
         | blek! Bin is a free, self-hosted, nojs alternative to 
         a(href='https://pastebin.com') Pastebin
@@ -24,3 +26,14 @@ block append content
         | Also, Librebin has only 8 commits and the last commit was on May 30 2022 (at this moment), or 
         span(style='background:#30303010;padding:2px 4px;border:1px solid #c2c4c2;font-size:10pt;border-radius:8px')
             | #{TimeSince(new Date(2022, 6, 30))} ago
+    p
+        | Instances list
+        table(class='border_table')
+            tbody
+                tr
+                    td Link
+                    td Some words
+                tr
+                    td
+                        a(href='https://bin.blek.codes') bin.blek.codes
+                    td Official instance (NL)
