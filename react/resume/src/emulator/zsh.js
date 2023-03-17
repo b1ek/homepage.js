@@ -107,8 +107,9 @@ function reset_cmd() {
 }
 
 function cbackspace() {
-    let exploded = cmd.split(' ');
-    if (exploded.length >= 1) {
+    let exploded = cmd.substring(0, cmd.length - 2).split(' ');
+    
+    if (exploded.length == 1) {
         reprint_prompt();
         cmd = '';
         return;
