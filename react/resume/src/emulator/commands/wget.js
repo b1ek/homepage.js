@@ -41,7 +41,7 @@ Usage: ${argv[0]} [URL] [-O out.file] [-V] [-Q] [-s]
         if (filepath == '-') {
             terminal.write(file);
         } else {
-            fs.writeFileSync(filepath, file);
+            fs.writeFileSync(filepath, new Buffer(file));
         }
     }
 
@@ -53,7 +53,7 @@ Usage: ${argv[0]} [URL] [-O out.file] [-V] [-Q] [-s]
     req.onprogress = progress;
     req.onload = (e) => {
         if (e.type == 'load') {
-            write(e.response);
+            write(req.response);
         }
     };
     req.send();
