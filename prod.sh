@@ -1,5 +1,12 @@
 #!/bin/bash
 
+if [ ! -f .env ]; then
+    echo "No .env; Please create .env and try again"
+    exit
+fi
+
+. '.env'
+
 cp docker-compose.prod docker-compose.yml
 cp Dockerfile.prod Dockerfile
 
