@@ -25,6 +25,3 @@
 	position:relative;
 	top:1px;
 }
-.back_button_1::before {
-	content: '← go back'
-}
