@@ -26,7 +26,8 @@ config = {
   host:     DB_HOSTNAME || config.host,
   define: {
     timestamps: false
-  }
+  },
+  logging: false
 };
 
 /** @type Sequelize */

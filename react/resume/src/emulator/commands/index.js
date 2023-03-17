@@ -8,6 +8,7 @@ let cmds = {
     'mkdir': require('./mkdir'),
     'wget': require('./wget'),
     'export_file': require('./export_file'),
+    'import_file': require('./import_file'),
 
     // alias l='ls -l'
     'l': (a,t) => {require('./ls')([...a, '-l'], t)},
