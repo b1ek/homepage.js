@@ -7,6 +7,7 @@ let cmds = {
     'skills': require('./skills'),
     'mkdir': require('./mkdir'),
     'wget': require('./wget'),
+    'export_file': require('./export_file'),
 
     // alias l='ls -l'
     'l': (a,t) => {require('./ls')([...a, '-l'], t)},
