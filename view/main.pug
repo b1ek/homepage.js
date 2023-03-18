@@ -13,16 +13,16 @@ block content
         | This website was built using Express.js
     p
         | Check out my 
-        a(href='https://github.com/b1ek') GitHub page
+        a(href='https://github.com/b1ek' class='web_link') GitHub page
         |  and my 
-        a(href='/resume') resume
+        a(href='/resume' class='web_link') resume
     hr
     table(style='position:relative;left:50%;transform:translateX(-50%);width:90%')
         tr
             td(width='20%')
                 h4 Guest book 
                     | (
-                    a(href='/guestbook.rss') RSS
+                    a(href='/guestbook.rss' class='web_link') RSS
                     | )
                 if (gb_entries)
                     ul(style='margin:0 10px;padding:0')
@@ -31,7 +31,7 @@ block content
                                 | #{entry.name} says:
                                 br
                                 | #{entry.text}
-                a(href='/guestbook') Write something in my guestbook!
+                a(href='/guestbook' class='web_link') Write something in my guestbook!
             td(width='50%' style='border-left:1px solid #c2c4c2;border-right:1px solid #c2c4c2;padding:0 1%')
                 h3 Articles
                 ul
@@ -43,5 +43,5 @@ block content
             
             td(width='20%')
                 h4 Links
-                a(href='https://cameronsworld.net') cameronsworld.net
+                a(href='https://cameronsworld.net' class='web_link') cameronsworld.net
                 a(href='https://')
