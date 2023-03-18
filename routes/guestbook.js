@@ -46,7 +46,7 @@ async function submit(req, res, next) {
     if (message.length >= 512) {
         errors.push('Maximum length is 512 characters.');
     }
-    if (name == '') {
+    if (name.match(/^\s*$/g)) {
         errors.push('Name must be specified.');
     }
     if (
@@ -65,12 +65,12 @@ async function submit(req, res, next) {
         send_error(res, "<p>" + errors.join('<br/>') + "</p>");
         return;
     }
+    // done checking for errors
 
     req.session.gb_name = name;
     req.session.gb_email = email;
     req.session.gb_hidemail = req.body.hidemail;
 
-    // actual shit
     let records = await Sequelize.Guestbook.findAll({
         where: {
             ip: req.ip
