@@ -19,10 +19,11 @@ router.use(minify({
 }));
 
 // TODO: Maybe move all regexes into one file? Idk
-const legacy_re = /(Firefox\/[0-5]\d{0,1}|Mozilla\/[0-4]|MSIE \d{1,2}\.\d{1,2}|Windows (NT|9\d)|Linux i686|(198\d|199\d|200\d|201[0-6])|Opera|Dillo|Naenara|Navscape|Lynx[1-5]|QtWeb|Prism|Tencent|i(Phone|Pad|Pod)( OS [1-6]|))/g;
+const legacy_re = /(Firefox\/[0-5]\d{0,1}|Mozilla\/[0-4]|MSIE \d{1,2}\.\d{1,2}|Windows (NT|9\d)|Linux i686|(198\d|199\d|200\d|201[0-6])|Dillo|Naenara|Navscape|Netscape|QtWeb|Prism|Tencent|i(Phone|Pad|Pod)( OS [1-5]|))/g;
 
 router.use((req, res, next) => {
     req.legacymode = req.headers['user-agent'].match(legacy_re);
+//    res.send(req.headers['user-agent']);return;
     next();
 });
 

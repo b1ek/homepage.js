@@ -65,16 +65,26 @@ html(style='overflow-y:auto' lang='en_US')
                     h1
                         a(href='/') blek! Site
                     hr(class='flag_hr')
-                    ul 
-                        each route, name in routes
-                            if (route == 'hr')
-                                li <hr/>
-                            else
-                                li(style='padding-left:4px')
-                                    if current_route == route
+                    if (!req.legacymode)
+                        ul 
+                            each route, name in routes
+                                if (route == 'hr')
+                                    li <hr/>
+                                else
+                                    li(style='padding-left:4px')
+                                        if current_route == route
+                                            | > #{name}
+                                        else
+                                            a(href=route) #{name}
+                    else
+                        p(style='font-size:7pt')
+                            each route, name in routes
+                                if (route != 'hr')
+                                    if (current_route == router)
                                         | > #{name}
                                     else
-                                        a(href=route) #{name}
+                                        a(href=router)= name
+                                br
 
                     hr
                     p(class='nojs_hide') This site is also available in:
