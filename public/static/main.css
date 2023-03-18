@@ -125,3 +125,17 @@ table.border_table tr th {
     font-size: 90%;
     text-align: center;
 }
+
+a.web_link::before {
+    background: url(/static/image/ui/web32.png);
+    background-size: cover;
+    background-position: center;
+
+    content: '   ';
+    padding: 8px 8px;
+    margin-right: 4px;
+    
+    transform: translateY(3px);
+
+    display: inline-block;
+}
