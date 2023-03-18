@@ -135,7 +135,7 @@ function backspace(isCtrl) {
 }
 
 /** @param { KeyboardEvent } dom */
-function control_char(id, dom) {
+async function control_char(id, dom) {
     
     switch (id) {
 
@@ -167,18 +167,42 @@ function control_char(id, dom) {
 
         case 86:
             if (dom.altKey) break;
-
-        default:
-            if (dom.ctrlKey && (dom.key.length == 1)) {
-                terminal.write('^' + dom.key.toUpperCase());
+        
+        case 82:
+            // Why it checks if letter is 'r':
+            // For some reason, ctrl+(v|r|d) executed this code.
+            // This is a simple fix
+            // (same works for any other code like this in this function)
+            if (dom.ctrlKey && dom.key.toLowerCase() == 'r') {
+                if (Math.random() < 0.1) terminal.write('uwu');
+                window.location.reload();
+                break;
+            }
+        
+        case 68:
+            if (dom.ctrlKey && dom.key.toLowerCase() == 'd') {
+                terminal.writeln('');
+                pr_char = () => {};
+                exec_cmd = pr_char;
+                control_char = () => {};
                 break;
             }
 
-            terminal.write('<');
-            if (dom.ctrlKey)    terminal.write('C');
-            if (dom.altKey)     terminal.write('A');
-            if (dom.shiftKey)   terminal.write('S');
-            terminal.write(`${id}>`)
+        default:
+            const wr = (t) => {
+                terminal.write(t);
+                cmd += t;
+            }
+            if (dom.ctrlKey && (dom.key.length == 1)) {
+                wr('^' + dom.key.toUpperCase());
+                break;
+            }
+
+            wr('<');
+            if (dom.ctrlKey)    wr('C');
+            if (dom.altKey)     wr('A');
+            if (dom.shiftKey)   wr('S');
+            wr(`${id}>`)
             break;
     }
 }
