@@ -61,7 +61,7 @@ html(style='overflow-y:auto' lang='en_US')
                 | contact the maintainers and notify them of the issue.
         table(width='100%' height='100%' class='body_table')
             tr
-                td(class='side_menu')
+                td(class='side_menu' width='10%')
                     h1
                         a(href='/') blek! Site
                     hr(class='flag_hr')
@@ -77,11 +77,11 @@ html(style='overflow-y:auto' lang='en_US')
                                         a(href=route) #{name}
 
                     hr
-                    p This site is also available in:
-                    p
+                    p(class='nojs_hide') This site is also available in:
+                    p(class='nojs_hide')
                         a(href='#' id='aussy_language')
                             span(class='flag_btn au_flag' title='Australian')
-                td(class='main_contents')
+                td(class='main_contents' width='90%')
                     block content
         block foot
         
@@ -98,6 +98,8 @@ html(style='overflow-y:auto' lang='en_US')
             setTimeout(function() {
                 alert('Congratulations! You have spent 10 years on this page. Go fuck yourself.\n\nUwU');
             }, 1000 * 60 * 60 * 24 * 365 * 10);
+
+            $('.nojs_hide').css('display', 'block')
 
         //- page js
         block scripts
