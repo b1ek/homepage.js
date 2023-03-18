@@ -46,7 +46,7 @@ async function submit(req, res, next) {
     if (message.length >= 512) {
         errors.push('Maximum length is 512 characters.');
     }
-    if (name.match(/^\s*$/g)) {
+    if (name.match(/^(\s|\u00A0|[\u2000-\u2009]|\u200A|\u2028|\u205F|\u3000)*$/g)) {
         errors.push('Name must be specified.');
     }
     if (
