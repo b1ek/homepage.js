@@ -1,7 +1,7 @@
 #!/bin/bash
 
-PACKAGES="sequelize-cli"
-DEV_PGKS="gulp-cli gulper gulp mocha"
+PACKAGES="sequelize-cli gulp-cli gulper gulp"
+DEV_PGKS="mocha"
 
 if [[ $APP_DEBUG == 'true' ]]; then
     yarn install

@@ -12,6 +12,7 @@ services:
     env_file: ./.env
     environment:
       APP_PORT: '${APP_PORT}'
+      APP_DEBUG: true
     networks:
       - homepage
   redis:
