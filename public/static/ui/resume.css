@@ -41,3 +41,8 @@ div#resume_js_app table * {
     border:0;
     text-align: left;
 }
+
+.debug_warning {
+    opacity: 0.8 !important;
+    /* transform: translate(-50%, 80%) !important; */
+}

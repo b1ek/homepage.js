@@ -19,7 +19,7 @@ block content
                     table
                         tr
                             td Your name:
-                            td
+                            td(width='80%')
                                 input(type='text' name='name' value='' + (name ? name : '') style='width:50%')
                                 span(style='font-size:9pt;color:red;user-select:none' title='required')  *
                         tr
@@ -42,7 +42,7 @@ block content
                             span(style='font-weight:bold;color:darkred;font-size:9pt') !{errors}
                             br
                             a(style='font-size:9pt' href='/guestbook') Clear errors
-            td(style='padding:0 16px;margin:0')
+            td(style='padding:0 16px;margin:0' width='50%')
                 h5 Guidelines
                 ul
                     li Follow the DBAA policy.
@@ -54,7 +54,7 @@ block content
                         | DMCA content is not allowed. If your rights are violated, send your strikes to: 
                         a(href='mailto:me@blek.codes')
                             +label('me@blek.codes', '#a0a0b6')
-                span(style='font-size:10pt;color:darkred;font-weight:bold').
+                span(style='font-size:110%;color:darkred;font-weight:bold').
                     Warning: Your ip (#{ip}) will be logged and displayed for everyone.<br/>
                     You can delete your own message if it was sent from the same ip for 24 hours after it was sent.
                 p
