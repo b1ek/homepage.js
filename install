@@ -26,4 +26,10 @@ if [[ APP_DEBUG == 'true' ]]; then
 else
     npm i -g --prod $PACKAGES
 fi
+
+echo -e "Installing resume.js"
+cd react
+./install_resume.sh
+cd ..
+
 echo "All done."
