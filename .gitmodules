@@ -1,4 +1,0 @@
-[submodule "react/resume.js"]
-	path = react/resume.js
-	url = ssh://git@git.blek.codes/blek/resume.js
-	branch = master
