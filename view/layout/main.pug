@@ -52,6 +52,11 @@ html(style='overflow-y:auto' lang='en_US')
 
         block head 
     body(style='overflow-y:auto')
+        if (req.legacymode)
+            p(align='center' style='border-bottom:1px solid rgb(210,210,210);margin-bottom:0;padding-bottom:16px')
+                | It seems that you are using an old browser.
+                br
+                | Please consider upgrading to a newer alternative
         if (process.env.APP_DEBUG == 'true')
             p(class='debug_warning')
                 | Warning: THE WEBSITE IS IN DEBUG MODE!
@@ -65,26 +70,16 @@ html(style='overflow-y:auto' lang='en_US')
                     h1
                         a(href='/') blek! Site
                     hr(class='flag_hr')
-                    if (!req.legacymode)
-                        ul 
-                            each route, name in routes
-                                if (route == 'hr')
-                                    li <hr/>
-                                else
-                                    li(style='padding-left:4px')
-                                        if current_route == route
-                                            | > #{name}
-                                        else
-                                            a(href=route) #{name}
-                    else
-                        p(style='font-size:7pt')
-                            each route, name in routes
-                                if (route != 'hr')
-                                    if (current_route == router)
+                    ul 
+                        each route, name in routes
+                            if (route == 'hr')
+                                li <hr/>
+                            else
+                                li(style='padding-left:4px')
+                                    if current_route == route
                                         | > #{name}
                                     else
-                                        a(href=router)= name
-                                br
+                                        a(href=route) #{name}
 
                     hr
                     p(class='nojs_hide') This site is also available in:
