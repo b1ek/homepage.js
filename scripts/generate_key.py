@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 
 import os
-import secrets
+import random
 import base64
 
 if (not os.path.exists('.env')):
     print('No .env file found. Please create a dotenv to proceed.');
     exit(-1);
 
-key_bytes = secrets.token_bytes(32);
+secrets = random.SystemRandom()
+
+key_bytes = ''.join(secrets.choices(list('abcdef1234567890'), k=32)).encode('ascii');
 dotenv_text = '';
 
 with open('.env', 'tr', encoding='utf-8') as f:
