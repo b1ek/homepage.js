@@ -1,7 +1,7 @@
 console.log('Executing startup jobs...');
 
 const fs = require('fs');
-const crc32 = require('crc-32');
+const { crc32 } = require('easy-crc');
 const glob = require('glob');
 const { exec } = require('child_process');
 
@@ -59,11 +59,7 @@ glob('data/userdata/*_gpgkey', async (err, files) => {
 
 });
 
-// TODO: perhaps a better approach to storing it????
-//                                                               ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-process.env.APP_KEY = Buffer.from(process.env.APP_KEY, 'base64').toString('ascii');
-
-console.log('Using a key with CRC32: ' + crc32.str(process.env.APP_KEY).toString(16));
+console.log('Using a key with CRC32: ' + crc32('CRC-32', process.env.APP_KEY));
 
 async function startup() {
     let t1 = hrt();

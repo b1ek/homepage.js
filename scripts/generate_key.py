@@ -8,7 +8,7 @@ if (not os.path.exists('.env')):
     print('No .env file found. Please create a dotenv to proceed.');
     exit(-1);
 
-key_bytes = secrets.token_bytes(32 * 8);
+key_bytes = secrets.token_bytes(32);
 dotenv_text = '';
 
 with open('.env', 'tr', encoding='utf-8') as f:
