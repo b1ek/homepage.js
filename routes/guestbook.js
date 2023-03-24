@@ -156,7 +156,6 @@ async function rss(req, res) {
     }]
 
     for (const record of data) {
-        console.log(record);
         if (record.email == null || record.email == undefined) {
             record.email = 'no@email.com';
         }
