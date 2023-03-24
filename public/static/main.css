@@ -46,6 +46,19 @@ a:visited {
 .side_menu h1 {
     font-size: 1.75em;
     padding-left: 3px;
+    margin-top: 1em;
+    margin-bottom: 0;
+}
+.side_menu p.side_menu_powered_by {
+    margin-top: 0;
+    transform: translateY(-6px);
+    font-weight: 300;
+    text-shadow: 0 0 1px #00000080;
+    font-size: 8.5pt;
+}
+.side_menu p.side_menu_powered_by a {
+    font-weight: 300;
+    font-size: 100%;
 }
 .side_menu h1 a {
     font-weight: 200;
