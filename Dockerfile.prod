@@ -4,7 +4,4 @@ WORKDIR /opt/code
 
 COPY . /opt/code
 
-RUN rm -rf node_modules package-lock.json yarn.lock && \
-	./install
-
 CMD [ "npm", "run", "prod" ]
