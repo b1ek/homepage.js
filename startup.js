@@ -2,8 +2,6 @@ console.log('Executing startup jobs...');
 
 const fs = require('fs');
 const { crc32 } = require('easy-crc');
-const glob = require('glob');
-const { exec } = require('child_process');
 
 const hrt = () => {
     let hr = process.hrtime();
@@ -29,35 +27,12 @@ if (process.env.APP_DEBUG == 'true') {
 
 // build resume page
 if ((!fs.existsSync('public/static/dist/resume.js')) && (!process.env.APP_DEBUG)) {
-    console.log('Resume files do not exist, building it automatically...');
-    exec('react/resume/build.sh');
+    console.log('Resume files do not exist!');
 }
 
 // load key
 if (!process.env.APP_KEY)
     throw new Error('APP_KEY is not set.')
-
-// import gpg keys
-glob('data/userdata/*_gpgkey', async (err, files) => {
-    if (err) {
-        console.error(err);
-        process.exit(-1);
-    }
-    files.filter(
-        file => {
-            return !file.startsWith('.')
-        }
-    ).forEach(file => {
-        exec('gpg --import ' + file, (err, stdout, stderr) => {
-            if (err) {
-                console.error(`Errors while importing ${file}: ${err}`);
-                process.exit(-1);
-            }
-            console.log(`Imported ${file} key`);
-        });
-    });
-
-});
 
 console.log('Using a key with CRC32: ' + crc32('CRC-32', process.env.APP_KEY));
 
