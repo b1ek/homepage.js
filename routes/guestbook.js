@@ -1,6 +1,7 @@
 const Sequelize = require('../models');
 const xml = require('xml');
 const handler = require('express-async-handler');
+const Helpers = require('../helpers');
 
 const send_error = async (res, error) => {
     return res.redirect('/guestbook?error=' + encodeURIComponent(error));
@@ -20,7 +21,6 @@ async function guestbook(req, res, next) {
             ]
         });
         if (!data) throw new Error('Failed to get guestbook entries');
-
 
         res.template('guestbook.pug', {
             current_route: req.originalUrl,
@@ -61,6 +61,14 @@ async function submit(req, res, next) {
     if (message == '') {
         errors.push('Message should not be empty!');
     }
+
+    if (process.env.DISALLOW_TOR.split(',').indexOf('guestbook') !== -1) {
+        let ip4 = req.ip.startsWith('::ffff:') ? req.ip.replace(/^::ffff:/, '') : req.ip;
+        if (await Helpers.TorChecker.check(ip4)) {
+            errors.push('Using tor is not allowed: IP ' + ip4 + ' is listed as a tor exit');
+        }
+    }
+
     if (errors.length !== 0) {
         send_error(res, "<p>" + errors.join('<br/>') + "</p>");
         return;

@@ -3,5 +3,6 @@ module.exports = {
     TimeSince:      require('./timesince'),
     HtmlString:     require('./htmlstring'),
     GPG:            require('./gpg'),
-    Minify:         require('./minify')
+    Minify:         require('./minify'),
+    TorChecker:     require('./tor_check')
 }
