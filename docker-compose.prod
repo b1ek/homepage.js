@@ -7,8 +7,6 @@ services:
       dockerfile: Dockerfile
     volumes:
       - './:/opt/code'
-    ports:
-      - '${APP_PORT}:${APP_PORT}'
     env_file: ./.env
     environment:
       APP_PORT: '${APP_PORT}'
@@ -19,6 +17,14 @@ services:
     image: redis:alpine
     networks:
       - homepage
+  nginx:
+    image: nginx:alpine
+    ports:
+      - '${APP_PORT}:80'
+    networks:
+      - homepage
+    volumes:
+      - './config/nginx:/etc/nginx'
   db:
     restart: always
     image: postgres:alpine
