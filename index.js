@@ -13,7 +13,9 @@ const app = express();
 const session = require('express-session');
 const bodyparser = require('body-parser');
 
-const { APP_PORT } = process.env;
+// this runs behind nginx now, which handles
+// the external port
+const APP_PORT = 80; // process.env;
 
 app.set('trust proxy', process.env.TRUST_PROXY);
 
