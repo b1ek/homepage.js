@@ -28,6 +28,7 @@ services:
       - homepage
     volumes:
       - './config/nginx:/etc/nginx'
+      - './public:/var/www:ro'
   db:
     image: postgres:alpine
     ports:
