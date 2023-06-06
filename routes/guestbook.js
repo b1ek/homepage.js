@@ -2,15 +2,33 @@ const Sequelize = require('../models');
 const xml = require('xml');
 const handler = require('express-async-handler');
 const Helpers = require('../helpers');
+const crypto = require('crypto');
 
-const send_error = async (res, error) => {
-    return res.redirect('/guestbook?error=' + encodeURIComponent(error));
+const send_error = async (req, res, error) => {
+    const code = crypto.randomBytes(2).toString('hex');
+    req.session.gb_error = {
+        text: error,
+        code
+    }
+    return res.redirect('/guestbook?error=' + code);
 };
 
 async function guestbook(req, res, next) {
     try {
 
-        const errors = req.query.error;
+        if (!req.query.error) {
+            delete req.session.gb_error;
+        }
+        if (req.query.error && req.session.gb_error === undefined) {
+            return res.redirect('/guestbook');
+        }
+
+        const errors =
+            req.query.error && req.session.gb_error ? 
+                req.session.gb_error.code == req.query.error ?
+                    req.session.gb_error.text :
+                    null
+                : false;
 
         const data = await Sequelize.Guestbook.findAll({
             where: {
@@ -70,7 +88,7 @@ async function submit(req, res, next) {
     }
 
     if (errors.length !== 0) {
-        send_error(res, "<p>" + errors.join('<br/>') + "</p>");
+        send_error(req, res, "<p>" + errors.join('<br/>') + "</p>");
         return;
     }
     // done checking for errors
@@ -91,11 +109,10 @@ async function submit(req, res, next) {
     const time = Math.floor(Date.now() / 1000);
 
     if (time - latest < 60) {
-        res.redirect(
-            '/guestbook?error=' +
-            encodeURIComponent(
-                'You are allowed to send 1 message per minute. You will be able to send next message in ' + ((latest + 60) - time) + ' seconds.'
-            )
+        send_error(
+            req,
+            res, 
+            'You are allowed to send 1 message per minute. You will be able to send next message in ' + ((latest + 60) - time) + ' seconds.'
         );
         return;
     }
@@ -140,8 +157,7 @@ async function del(req, res, next) {
             await Sequelize.Guestbook.update({hidden: true}, {where: {id: req.params.id}})
             res.redirect('/guestbook');
         } else {
-            res.redirect('/guestbook?error=' + encodeURIComponent('You don\'t have permission to delete this record.'))
-            return
+            return send_error(req, res, 'You don\'t have permission to delete this record.');
         }
     }
     catch (err) { next(err); }
