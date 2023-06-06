@@ -14,8 +14,6 @@ docker-compose up -d
 ```
 
 ### Production
-Note: production instance is not production-ready yet, as it is still in development mode.
-
 ```bash
 cp .env.example .env
 echo "APP_DEBUG=false" >> .env # Or edit the file yourself
