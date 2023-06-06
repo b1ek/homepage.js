@@ -2,6 +2,9 @@
 This is a rewrite of my current website to Express.JS.  
 [Git repo](https://git.blek.codes/blek/homepage.js) | [Website](https://blek.codes)
 
+# Warning: This branch is __experimental__
+### This branch is untested and unstable, and probably won't work in production.
+### Please don't use it for other purposes that development.
 # Running an instance
 
 First, [generate the app key](#generate-the-key).
