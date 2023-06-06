@@ -25,7 +25,9 @@ Also dont forget to build the [resume app](#build-the-resume)
 
 ## Build the resume
 cd to `react/resume` and run `build.sh`.  
-If you are running in debug mode, run `yarn/npm start`
+If you are running in debug mode, run `yarn/npm start`.
+
+**Note**: Generally, the app will build the resume by itself, although there is some exceptions.
 
 ## Generate the key
 Cd to root of project and run `scripts/generate_key.py`
